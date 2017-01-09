@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-  
 import gevent
 import urllib2
 import urllib
@@ -10,10 +11,12 @@ from gevent import monkey; monkey.patch_all()
 from xml.etree import ElementTree
 from gevent.pool import Pool
 import multiprocessing  
-from httpworker import setargs
+from httpworker import pool_method
+from httpworker import normal_method
+from multiprocessing import Process
+
 monkey.patch_all()
-from gevent.hub import get_hub, iwait, wait
-from gevent.hub import get_hub, iwat, wait
+
 def connect_mq():
     auth = pika.PlainCredentials('admin', '000000')
     parameters = pika.ConnectionParameters('192.168.94.230', 5672, '/',auth);
@@ -27,42 +30,49 @@ def connect_mq():
         return None
     return channel
 
-
-
-def worker(body):
-    print(body)
     
 count = 0
 #g = pool.Pool()
 
 def callback(ch, method, properties, body):
     print("receive %r" %(body,))
-    #print("recv count", )
-    global count
-    count += 1
     try:
-	print(count)
-	#tasks = [gevent.spawn(worker, body)]
-	#gevent.joinall(tasks) 
-	setargs(url=body)
+	normal_method(url=body)
 	ch.basic_ack(delivery_tag=method.delivery_tag)
     except Exception, e:
 	print(e)
+    finally:
+	global count
+	count += 1
+	#print(count)
 
-try:
+
+def main():
+    try:
 	channel =  connect_mq()
-#设置最多分给worker2个任务，多余的分配给其他worker
+	#璁剧疆鏈�澶氬垎缁檞orker2涓换鍔★紝澶氫綑鐨勫垎閰嶇粰鍏朵粬worker
 	channel.basic_qos(prefetch_count=2)
-
 	channel.basic_consume(callback, queue = 'my_queue',
-                      no_ack=False)
+	                      no_ack=False)
+	print("start recvive msg...")
 	channel.start_consuming()
-	print("recv message:")
-except Exception, e:
-	print(e)
+    except Exception, e:
+	print(e)    
+	
+	
+#start mutlti process
+def start_multi_process(func, worknum):
+    proc_record = []
+    for i in range(worknum):
+	p = Process(target = func)
+	p.start()
+	proc_record.append(p)
+    for p in proc_record:
+	p.join()
+	
 
-#
-##    end = datetime.datetime.now()
-    #time = end-begin
- #   print time
+if __name__ == '__main__': 
+    main()
+    #start_multi_process(func=main, worknum=4)
+
 
