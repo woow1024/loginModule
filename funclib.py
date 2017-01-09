@@ -5,6 +5,7 @@ import os
 import json
 
 __all__ = {'call_http_method'}
+att_dict =['grade','sex']
 def call_http_method(url, data=None, http_header={}):
     try:
         request = urllib2.Request(url, data, http_header)
@@ -54,21 +55,30 @@ class redisDb:
             else:
                 return 1
         except Exception,error:
-            ogging.error("connect to redis failed : %s", str(error))
+            logging.error("connect to redis failed : %s", str(error))
             return False       
         
-    def write_redis(self, jsonData):
+    def write_redis(self, keyname,jsonAttr,jsonData):
         conn = redisDb.get_redis_conn(self)
         if conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False    
-        data = json.loads(jsonData, encoding=None, cls=None, object_hook=None, 
-                         parse_float=None, 
-                         parse_int=None, 
-                         parse_constant=None, 
-                         object_pairs_hook=None)
+        conn.hset(keyname,jsonAttr, jsonData)
+        h_data = conn.hgetall(keyname)
+        #print h_data
         
-        
+    
+    
+    def delete_redis(self,keyname):
+        conn = redisDb.get_redis_conn(self)
+        if conn is None:
+            logging.error("connect to redis failed : %s", str(error))
+            return False    
+        for i in att_dict:
+            conn.hdel(keyname,i)
+        h_data = conn.hgetall(keyname)
+        #print h_data        
+                
         
 
 
@@ -77,3 +87,7 @@ if __name__ == "__main__":
 
     db = redisDb()
     db.user_exists('001')
+    db.write_redis('001','sex','male')
+    db.write_redis('001','grade',1)
+    db.delete_redis('001')
+    
