@@ -1,25 +1,21 @@
 # -*- coding:utf-8 -*-  
-import gevent
 import urllib2
-import urllib
 import datetime
 import json
 import sys
-import urllib2
 import pika
 from gevent import monkey; monkey.patch_all()
 from xml.etree import ElementTree
-from gevent.pool import Pool
-import multiprocessing  
-from httpworker import pool_method
+from gevent.pool import Pool 
 from httpworker import normal_method
 from multiprocessing import Process
 
 monkey.patch_all()
 
-def connect_mq():
-    auth = pika.PlainCredentials('admin', '000000')
-    parameters = pika.ConnectionParameters('192.168.94.230', 5672, '/',auth);
+
+def connect_mq(username='',pwd='',ip='localhost',port=5672):
+    auth = pika.PlainCredentials(username, pwd,port)
+    parameters = pika.ConnectionParameters(ip, port, '/');
     try:
         #host_url = '192.168.1.23'
         connection = pika.BlockingConnection(parameters)  
@@ -34,10 +30,23 @@ def connect_mq():
 count = 0
 #g = pool.Pool()
 
-def callback(ch, method, properties, body):
-    print("receive %r" %(body,))
+#call_http_method('http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky')
+
+#read file 
+ini_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3'
+def compos_url(jsondata):
     try:
-	normal_method(url=body)
+	json_data = json.loads(jsondata)
+	print json_data
+	new_url = ini_url + '&u=' + json_data['u'] + '&p=' + json_data['p']
+	return new_url
+    except Exception, e:
+	    print(e)        
+    
+def callback(ch, method, properties, body):
+    try:
+	url = compos_url(body)
+	normal_method(url)
 	ch.basic_ack(delivery_tag=method.delivery_tag)
     except Exception, e:
 	print(e)
