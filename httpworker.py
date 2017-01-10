@@ -9,9 +9,11 @@ from  redisworker import  redisDb
 from xml.etree import ElementTree
 from gevent.pool import Pool
 from gevent import pool
+import redis
 #login_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/'
 
-
+#b = redisDb()
+redis_pool = redis.ConnectionPool(host='localhost',port=6379)
 def decode_login_response(response):
     try:
 	#decode xml
@@ -25,6 +27,7 @@ def decode_login_response(response):
 	    return  False
 	
 	b = redisDb()
+	#b.get_redis_conn()
 	print result['user']['username']
 	b.write_redis( result['user']['username'],'func',result['r'][0]['func'])
     except Exception, e:

@@ -15,7 +15,7 @@ monkey.patch_all()
 
 def connect_mq(queue,username='',pwd='',ip='localhost',port=5672):
     auth = pika.PlainCredentials(username, pwd,port)
-    parameters = pika.ConnectionParameters(ip, port, '/');
+    parameters = pika.ConnectionParameters(ip, port, '/', auth);
     try:
         #host_url = '192.168.1.23'
         connection = pika.BlockingConnection(parameters)  
@@ -51,9 +51,10 @@ def callback(ch, method, properties, body):
     except Exception, e:
 	print(e)
 
-
+i = 1
 def main():
     try:
+	print i
 	channel =  connect_mq('my_queue')
 	#设置最多分给worker2个任务，多余的分配给其他worker
 	channel.basic_qos(prefetch_count=2)

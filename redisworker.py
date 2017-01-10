@@ -30,25 +30,24 @@ def call_http_method(url, data=None, http_header={}):
     
 class redisDb:
     def __init__(self):
-        self.host = '127.0.0.1'
+        self.host = '192.168.1.23'
         self.port = 6379
-        self.conn = redisDb.get_redis_conn(self)
-        
+        self.redis_conn = redis.Redis(connection_pool=redis_pool)
     def get_redis_conn(self):
         try:
-            redis_pool = redis.ConnectionPool(host=self.host,port=self.port)
-            redis_conn = redis.Redis(connection_pool=redis_pool)      
+            #redis_pool = redis.ConnectionPool(host=self.host,port=self.port)
+                  
             return redis_conn
         except Exception, error:
             logging.error("connect to redis failed : %s", str(error))
             return None        
         
     def user_exists(self,keyname):
-        if self.conn is None:
+        if self.redis_conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False
         try:
-            len = self.conn.hlen(keyname)
+            len = self.redis_conn.hlen(keyname)
             if len == 0:
                 return 0
             else:
@@ -58,23 +57,23 @@ class redisDb:
             return False       
         
     def write_redis(self, keyname,jsonAttr,jsonData):
-        if self.conn is None:
+        if self.redis_conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False    
-        self.conn.hset(keyname,jsonAttr, jsonData)
-        h_data = self.conn.hgetall(keyname)
+        self.redis_conn.hset(keyname,jsonAttr, jsonData)
+        h_data = self.redis_conn.hgetall(keyname)
         #print h_data
         
     
     
     def delete_redis(self,keyname):
         
-        if self.conn is None:
+        if self.redis_conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False    
         for i in att_dict:
-            self.conn.hdel(keyname,i)
-        h_data = self.conn.hgetall(keyname)
+            self.redis_conn.hdel(keyname,i)
+        h_data = self.redis_conn.hgetall(keyname)
         #print h_data        
                 
     
