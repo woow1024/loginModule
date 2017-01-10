@@ -4,8 +4,7 @@ import logging
 import os
 import json
 
-__all__ = {'call_http_method'}
-att_dict =['grade','sex']
+att_dict =['f','sex']
 def call_http_method(url, data=None, http_header={}):
     try:
         request = urllib2.Request(url, data, http_header)
@@ -87,7 +86,4 @@ if __name__ == "__main__":
 
     db = redisDb()
     db.user_exists('001')
-    db.write_redis('001','sex','male')
-    db.write_redis('001','grade',1)
-    db.delete_redis('001')
-    
+   
