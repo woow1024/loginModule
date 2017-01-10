@@ -11,18 +11,18 @@ from gevent.pool import Pool
 from gevent import pool
 #login_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/'
 
-count = 0
-start_time = 0
+
 def decode_login_response(response):
     try:
 	#decode xml
 	root= ElementTree.fromstring(response)
-	code = root.find('code')
-	#print(code.text)
-    
+	
 	#decode json
 	msg_json = root.find('msg').text
 	result = json.loads(msg_json)
+	
+	if( result['ret'] != 0 ):
+	    return  False
 	
 	b = redisDb()
 	print result['user']['username']
@@ -32,16 +32,19 @@ def decode_login_response(response):
 
 
 def send_login_request(url):
-    try:
+  
 	value = {}
 	data = urllib.urlencode(value)
 	req=urllib2.Request(url)
-	resp = urllib2.urlopen(req)
+	try:
+	    resp = urllib2.urlopen(req)
+	except Exception, e:
+	    print("send login request error[%s]"%e)	
+	    return False
 	res_data = resp.read()
 	print(res_data)
 	decode_login_response(res_data)
-    except Exception, e:
-	print("send login request error[%s]"%e)
+   
 	    
 	    
 		
