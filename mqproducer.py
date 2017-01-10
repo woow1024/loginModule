@@ -1,12 +1,13 @@
 import pika  
 import sys
 import urllib2
+import json
 
 def connect_mq():
-    auth = pika.PlainCredentials('admin', '000000')
-    parameters = pika.ConnectionParameters('192.168.94.230', 5672, '/',auth);
+    auth = pika.PlainCredentials('', '')
+    parameters = pika.ConnectionParameters('localhost', 5672, '/');
     try:
-        host_url = '192.168.1.23'
+        host_url = 'localhost'
         connection = pika.BlockingConnection(parameters)  
         channel = connection.channel()  
         channel.queue_declare(queue='my_queue', durable=True)
@@ -16,18 +17,16 @@ def connect_mq():
     return channel
 
 
-count = 0
+
 channel =  connect_mq()
 message = "hello, world"
 try:
-    for i in range(1000):
-        global count
-        count += 1
         #message=("%d helloworld"%count)
-        message="http://httpbin.org/get"
+        message={'u':'MTg5MTgxOTIzOTA=','p':'OTZlNzkyMTg5NjVlYjcyYzky'}
+        json_str = json.dumps(message)
         channel.basic_publish(exchange='',
                       routing_key='my_queue',
-                      body=message,
+                      body=json_str,
                       properties=pika.BasicProperties(
                           #delivery_mode = 2
                       ))

@@ -5,10 +5,11 @@ import urllib
 import datetime
 import json
 import time
+from  redisworker import  redisDb
 from xml.etree import ElementTree
 from gevent.pool import Pool
 from gevent import pool
-#login_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/"
+#login_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/'
 
 count = 0
 start_time = 0
@@ -23,7 +24,9 @@ def decode_login_response(response):
 	msg_json = root.find('msg').text
 	result = json.loads(msg_json)
 	
-	print(result)    
+	b = redisDb()
+	print result['user']['username']
+	b.write_redis( result['user']['username'],'func',result['r'][0]['func'])
     except Exception, e:
 	print(e)
 
@@ -39,15 +42,6 @@ def send_login_request(url):
 	decode_login_response(res_data)
     except Exception, e:
 	print("send login request error[%s]"%e)
-    finally:
-	    global count
-	    global start_time
-	    if 0 == count:
-		start_time = time.time()
-	    count += 1
-	    print(count)
-	    if 1000 == count:
-		print(time.time() - start_time)	    
 	    
 	    
 		
@@ -76,8 +70,9 @@ def main():
     return None
 
 if __name__ == '__main__': 
-    begin = datetime.datetime.now()
-    main()
-    end = datetime.datetime.now()
-    print(end-begin)
+   # begin = datetime.datetime.now()
+    #main()
+   # end = datetime.datetime.now()
+   # print(end-begin)
+    send_login_request('http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/')
 
