@@ -32,6 +32,7 @@ class redisDb:
     def __init__(self):
         self.host = '127.0.0.1'
         self.port = 6379
+        self.conn = redisDb.get_redis_conn(self)
         
     def get_redis_conn(self):
         try:
@@ -43,12 +44,11 @@ class redisDb:
             return None        
         
     def user_exists(self,keyname):
-        conn = redisDb.get_redis_conn(self)
-        if conn is None:
+        if self.conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False
         try:
-            len = conn.hlen(keyname)
+            len = self.conn.hlen(keyname)
             if len == 0:
                 return 0
             else:
@@ -58,26 +58,26 @@ class redisDb:
             return False       
         
     def write_redis(self, keyname,jsonAttr,jsonData):
-        conn = redisDb.get_redis_conn(self)
-        if conn is None:
+        if self.conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False    
-        conn.hset(keyname,jsonAttr, jsonData)
-        h_data = conn.hgetall(keyname)
+        self.conn.hset(keyname,jsonAttr, jsonData)
+        h_data = self.conn.hgetall(keyname)
         #print h_data
         
     
     
     def delete_redis(self,keyname):
-        conn = redisDb.get_redis_conn(self)
-        if conn is None:
+        
+        if self.conn is None:
             logging.error("connect to redis failed : %s", str(error))
             return False    
         for i in att_dict:
-            conn.hdel(keyname,i)
-        h_data = conn.hgetall(keyname)
+            self.conn.hdel(keyname,i)
+        h_data = self.conn.hgetall(keyname)
         #print h_data        
                 
+    
         
 
 

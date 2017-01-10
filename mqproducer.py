@@ -19,7 +19,6 @@ def connect_mq():
 
 
 channel =  connect_mq()
-message = "hello, world"
 try:
         #message=("%d helloworld"%count)
         message={'u':'MTg5MTgxOTIzOTA=','p':'OTZlNzkyMTg5NjVlYjcyYzky'}

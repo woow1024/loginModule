@@ -13,7 +13,7 @@ from multiprocessing import Process
 monkey.patch_all()
 
 
-def connect_mq(username='',pwd='',ip='localhost',port=5672):
+def connect_mq(queue,username='',pwd='',ip='localhost',port=5672):
     auth = pika.PlainCredentials(username, pwd,port)
     parameters = pika.ConnectionParameters(ip, port, '/');
     try:
@@ -50,15 +50,11 @@ def callback(ch, method, properties, body):
 	ch.basic_ack(delivery_tag=method.delivery_tag)
     except Exception, e:
 	print(e)
-    finally:
-	global count
-	count += 1
-	#print(count)
 
 
 def main():
     try:
-	channel =  connect_mq()
+	channel =  connect_mq('my_queue')
 	#设置最多分给worker2个任务，多余的分配给其他worker
 	channel.basic_qos(prefetch_count=2)
 	channel.basic_consume(callback, queue = 'my_queue',
