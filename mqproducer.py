@@ -7,7 +7,7 @@ def connect_mq():
     auth = pika.PlainCredentials('', '')
     parameters = pika.ConnectionParameters('localhost', 5672, '/');
     try:
-        host_url = 'localhost'
+        host_url = '192.168.1.23'
         connection = pika.BlockingConnection(parameters)  
         channel = connection.channel()  
         channel.queue_declare(queue='my_queue', durable=True)
@@ -20,6 +20,7 @@ def connect_mq():
 
 channel =  connect_mq()
 try:
+    for i in range(10):
         #message=("%d helloworld"%count)
         message={'u':'MTg5MTgxOTIzOTA=','p':'OTZlNzkyMTg5NjVlYjcyYzky'}
         json_str = json.dumps(message)

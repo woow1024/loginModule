@@ -51,9 +51,10 @@ def callback(ch, method, properties, body):
     except Exception, e:
 	print(e)
 
-
+i = 1
 def main():
     try:
+	print i
 	channel =  connect_mq('my_queue')
 	#设置最多分给worker2个任务，多余的分配给其他worker
 	channel.basic_qos(prefetch_count=2)
