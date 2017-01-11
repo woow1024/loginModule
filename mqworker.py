@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-  
 import urllib2
+import datetime
 import json
 import sys
 import pika
-import logging
 import redis
 from gevent import monkey; monkey.patch_all()
 from xml.etree import ElementTree
@@ -32,13 +32,13 @@ class my_mq():
 	    self.redis_pool = redis.ConnectionPool(host=host, port=port, db=0, password=pwd)
 	    return True
 	except Exception, e:
-	    print "create redis pool err: %s" %e
+	    print "create redis pool err:"+e
 	    return False
 	
     
     def __connect_mq(self,queue_name='my_queue', vhost='/'):
 	auth = pika.PlainCredentials(self.user, self.pwd, self.port)
-	parameters = pika.ConnectionParameters(host=self.host, port=self.port,virtual_host=vhost, credentials='');
+	parameters = pika.ConnectionParameters(host=self.host, port=self.port,virtual_host=vhost, credentials=auth);
 	try:
 	    connection = pika.BlockingConnection(parameters)  
 	    channel = connection.channel()  
@@ -50,19 +50,6 @@ class my_mq():
 	self.channel = channel
 	return channel
     
-    def start_produce(self,msg,queue_name='my_queue1'):
-	try:
-	    json_str = json.dumps(msg)
-	    channel.basic_publish(exchange='',
-	                        routing_key='my_queue1',
-		                 body=json_str,
-		                 properties=pika.BasicProperties(
-	                            #delivery_mode = 2
-	                        ))	
-	except Exception, e:
-	    print e
-	    #print("%s %s",__file__,e)   	    
-	
     def star_consuming(self,queue_name='my_queue'):
 	channel =  self.__connect_mq(queue_name)
 	if(channel is not None):
@@ -70,7 +57,7 @@ class my_mq():
 	    try:
 		#设置最多分给worker2个任务，多余的分配给其他worker
 		channel.basic_qos(prefetch_count=2)
-		channel.basic_consume(self.__callback, queue = queue_name,
+		channel.basic_consume(self.__callback, queue = 'my_queue',
 		                  no_ack=False)
 		print "start recvive msg..."
 		channel.start_consuming()
@@ -88,6 +75,7 @@ class my_mq():
 	try:
 	    url = self.__compos_url(body)
 	    http = my_http(self.redis_pool)
+	    http.pool_method
 	    http.normal_method(url)
 	    ch.basic_ack(delivery_tag=method.delivery_tag)
 	except Exception, e:
@@ -115,5 +103,24 @@ def start_multi_process(func, worknum):
     
 
 
+if __name__ == '__main__':  
+    try:
+	mq = my_mq(host='192.168.94.230', 
+	           port=5672, 
+	           user='admin', 
+	           pwd='000000')
+	
+	mq.initRedisPool(host='127.0.0.1', 
+	                 port=6379, 
+	                 db=0, 
+	                 pwd=None)
+	
+	print 'init redis pool success..'
+
+	mq.star_consuming(queue_name='my_queque')
+	
+    except Exception, error:
+	print error  
+    #start_multi_process(func=main, worknum=4)
 
 

@@ -20,6 +20,7 @@ def connect_mq():
 
 channel =  connect_mq()
 try:
+    for i in range(10):
         #message=("%d helloworld"%count)
         message={'u':'MTg5MTgxOTIzOTA=','p':'OTZlNzkyMTg5NjVlYjcyYzky'}
         json_str = json.dumps(message)

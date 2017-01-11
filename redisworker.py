@@ -4,9 +4,31 @@ import logging
 import os
 import json
 
-att_dict =['func1']
+att_dict =['f','sex']
 
+def call_http_method(url, data=None, http_header={}):
+    try:
+        request = urllib2.Request(url, data, http_header)
+        http_response = urllib2.urlopen(request)
+    except (urllib2.URLError, ValueError, TypeError), error:
+        logging.error("call http method error\nurl : %s\ndata : %r\nerror reason:%s",
+                      url, data, error)
+        return str(error), False
 
+    try:
+        content = http_response.read()
+        code = http_response.getcode()
+
+        http_response.close()
+        print content
+        return content, code
+
+    except Exception, error:
+        logging.error("call http method error\nurl : %s\ndata : %r\nerror reason:%s",
+                      url, data, error)
+        return str(error), False
+    
+    
 class redisDb:
     def __init__(self, pool):
         #self.host = '192.168.1.23'
@@ -22,23 +44,20 @@ class redisDb:
         try:
             len = self.redis_conn.hlen(keyname)
             if len == 0:
-                return 'not exists'
+                return 0
             else:
-                return 'exists'
+                return 1
         except Exception,error:
             logging.error("connect to redis failed : %s", str(error))
             return False       
         
     def write_redis(self, keyname,jsonAttr,jsonData):
-        res = self.user_exists
-        if not res:
-            return False
-        elif res == 'not exists':
-            self.redis_conn.hset(keyname,jsonAttr, jsonData)
-            return 'success'
-        elif res == 'exits':
-            return 'kickout'
-       
+        if self.redis_conn is None:
+            logging.error("connect to redis failed : %s", str(error))
+            return False    
+        self.redis_conn.hset(keyname,jsonAttr, jsonData)
+        h_data = self.redis_conn.hgetall(keyname)
+        #print h_data
         
     
     
