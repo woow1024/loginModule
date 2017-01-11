@@ -1,6 +1,7 @@
 from gevent import monkey; monkey.patch_all()
 import gevent
 import urllib2
+import urllib
 import json
 import logging
 from  redisworker import  redisDb
@@ -8,14 +9,15 @@ from xml.etree import ElementTree
 from gevent.pool import Pool
 from gevent import pool
 import redis
-
+from Queue import Queue
 #login_url = 'http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/'
 
 #b = redisDb()
 
 class my_http:
-    def __init__(self, pool):
+    def __init__(self, pool,queue):
         self.redisdb=redisDb(pool)
+        self.queue=queue
     def decode_write_login_response(self,response):
         try:
             #decode xml
@@ -43,6 +45,7 @@ class my_http:
             resp = urllib2.urlopen(req)
         except Exception, e:
             logging.info("send login request error[%s]"%e)	
+            self.queue.put(e)
             return False
         res_data = resp.read()
         print(res_data)
