@@ -1,10 +1,8 @@
 from gevent import monkey; monkey.patch_all()
 import gevent
 import urllib2
-import urllib
-import datetime
 import json
-import time
+import logging
 from  redisworker import  redisDb
 from xml.etree import ElementTree
 from gevent.pool import Pool
@@ -18,7 +16,7 @@ import redis
 class my_http:
     def __init__(self, pool):
         self.redisdb=redisDb(pool)
-    def decode_login_response(response):
+    def decode_write_login_response(self,response):
         try:
             #decode xml
             root= ElementTree.fromstring(response)
@@ -29,9 +27,9 @@ class my_http:
     
             if( result['ret'] != 0 ):
                 return  False
+            keyname = result['user']['username']
+            res = self.redisdb.write_redis( keyname,'func',result['r'][0]['func'])
             
-            print result['user']['username']
-            self.redisdb.write_redis( result['user']['username'],'func',result['r'][0]['func'])
         except Exception, e:
             print(e)
     
@@ -40,14 +38,15 @@ class my_http:
         value = {}
         data = urllib.urlencode(value)
         req=urllib2.Request(url)
+        
         try:
             resp = urllib2.urlopen(req)
         except Exception, e:
-            print("send login request error[%s]"%e)	
+            logging.info("send login request error[%s]"%e)	
             return False
         res_data = resp.read()
         print(res_data)
-        decode_login_response(res_data)
+        self.decode_write_login_response(res_data)
     
     def pool_method(self, url):
         try:
@@ -62,7 +61,7 @@ class my_http:
     def normal_method(self, url):
         try:
             gevent.spawn(self.send_login_request, url)
-            #time.sleep(1)
+            
         except Exception,e:
             print(e)	
         return None   
@@ -75,9 +74,5 @@ class my_http:
 
 
 if __name__ == '__main__': 
-   # begin = datetime.datetime.now()
-    #main()
-   # end = datetime.datetime.now()
-   # print(end-begin)
     send_login_request('http://user-api.yinrui99.com/apis/pc/yg/client/login?sid=3&u=MTg5MTgxOTIzOTA=&p=OTZlNzkyMTg5NjVlYjcyYzky/')
 
