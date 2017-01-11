@@ -5,6 +5,7 @@ import os
 import json
 
 att_dict =['f','sex']
+redis_pool = redis.ConnectionPool(host='localhost',port=6379)
 def call_http_method(url, data=None, http_header={}):
     try:
         request = urllib2.Request(url, data, http_header)

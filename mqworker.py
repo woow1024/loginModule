@@ -15,7 +15,7 @@ monkey.patch_all()
 
 def connect_mq(queue,username='',pwd='',ip='localhost',port=5672):
     auth = pika.PlainCredentials(username, pwd,port)
-    parameters = pika.ConnectionParameters(ip, port, '/', auth);
+    parameters = pika.ConnectionParameters(ip, port, '/');
     try:
         #host_url = '192.168.1.23'
         connection = pika.BlockingConnection(parameters)  
