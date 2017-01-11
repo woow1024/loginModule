@@ -5,7 +5,7 @@ import os
 import json
 
 att_dict =['f','sex']
-redis_pool = redis.ConnectionPool(host='localhost',port=6379)
+
 def call_http_method(url, data=None, http_header={}):
     try:
         request = urllib2.Request(url, data, http_header)
@@ -30,19 +30,13 @@ def call_http_method(url, data=None, http_header={}):
     
     
 class redisDb:
-    def __init__(self):
-        self.host = '192.168.1.23'
-        self.port = 6379
-        self.redis_conn = redis.Redis(connection_pool=redis_pool)
+    def __init__(self, pool):
+        #self.host = '192.168.1.23'
+        #self.port = 6379
+        self.redis_conn = redis.Redis(connection_pool=pool)
     def get_redis_conn(self):
-        try:
-            #redis_pool = redis.ConnectionPool(host=self.host,port=self.port)
-                  
-            return redis_conn
-        except Exception, error:
-            logging.error("connect to redis failed : %s", str(error))
-            return None        
-        
+        return self.redis_conn
+    
     def user_exists(self,keyname):
         if self.redis_conn is None:
             logging.error("connect to redis failed : %s", str(error))
