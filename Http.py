@@ -7,9 +7,10 @@ import logging
 from gevent import monkey
 from xml.etree import ElementTree  
 from public import send_to_mq
-from public import user_exists
+from public import *
+from public import write_redis
 
-ini_url = 'http://www.baidu.com/apis/pc/yg/client/login?sid=3'
+ini_url = 'http://test.user-api.yinrui99.com/apis/pc/yg/client/login?sid=3'
 class Http:
     def __init__(self, ):
         pass
@@ -26,8 +27,10 @@ class Http:
         self.res_data = resp.read()
         print(self.res_data) 
         
-        send_to_mq(self.res_data)
-        
+        #send_to_mq(self.res_data)
+    def return_json_res(self, iniStr):
+        return json.loads(iniStr)
+    
     def decode_login_res(self, res=''):
         try:
             #decode xml
@@ -35,9 +38,9 @@ class Http:
             #decode json
             msg_json = root.find('msg').text
             result = json.loads(msg_json)
-            if( result['ret'] != 0 ):
-                return  False
-            keyname = result['user']['username']  
+            return result
+            
+           # keyname = result['user']['username']  
         except Exception, e:
             print(e)
 
@@ -50,27 +53,54 @@ class Http:
             print(e)	
         return None
 
-    def normal_method(self, url):
+    def get_url_from_json(self,body):
+        return None
+        
+    def normal_method(self, body):
+        #url = self.get_url_from_json(body)
         try:
-            gevent.spawn(self.work, url)
+            gevent.spawn(self.work, body)
         except Exception,e:
             print(e)	
         return None   
     
-    def __compos_url(self,jsondata):
+    def __compos_url(self,jsonDdata):
         try:
-            json_data = json.loads(jsondata)
-            print json_data
-            new_url = ini_url + '&u=' + json_data['u'] + '&p=' + json_data['p']
+            global ini_url
+            new_url = ini_url + '&u=' + jsonDdata['usr'] + '&p=' + jsonDdata['pwd']
             return new_url
         except Exception, e:
-            print(e)     
+            print(e)  
             
-    def work(self, msg):
-        url = self.__compos_url(msg)
-        self.send_login_request(url)
-        self.decode_login_res();
+            
+    def prepare_send_to_mq(self,iniJsonData, serverData):
         
-    def check_result(self,):
-        pass
-        #res = .write_redis( keyname,'func',result['r'][0]['func'])
+        
+        #构造返回报文
+        resData = {}
+        resData['cmd'] = iniJsonData['cmd']
+        resData['from'] = iniJsonData['from']
+        resData['seq'] = iniJsonData['seq'] 
+        resData['ret'] = serverData['ret']
+        resData['msg'] = serverData['msg']
+        resData['success'] = serverData['success']
+        if resData['success'] == 'true':
+            #检查redis
+            tjPriv = serverData['r'][0][u'func']
+            res = write_redis(iniJsonData['usr'], 'func',tjPriv )            
+            resData['permission'] = serverData['r'][0][u'permission']
+            resData['func'] = tjPriv
+            resData['action'] = res
+       
+        print resData
+        send_to_mq(json.dumps(resData))
+        
+    def work(self, msg):
+        jsonData = self.return_json_res(msg)
+        url = self.__compos_url(jsonData)
+        self.send_login_request(url)
+        res = self.decode_login_res()
+        self.prepare_send_to_mq(jsonData,res)
+        
+        
+   

@@ -15,8 +15,7 @@ class RedisDb:
         self.pwd = pwd
         self.db = db
         
-    def connect(self): 
-        
+    def connect(self):
         self.pool = redis.ConnectionPool(host=self.host, 
                                          port= self.port, 
                                          db = self.db, 
