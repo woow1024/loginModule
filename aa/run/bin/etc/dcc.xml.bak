@@ -1,0 +1,30 @@
+<config>
+	<authorHttp>
+		<ip>192.168.19.163</ip>
+		<port>8380</port>
+		<url>http://192.168.19.163:8380/ucenter-permission/api/rest/users/permissions/list</url>
+	</authorHttp>
+
+
+	<loginInfo>
+		<HQ>
+			<IP>115.239.211.112</IP>
+			<port>5091</port>
+		</HQ>
+		<DownLoad>
+			<IP>ftp.gwstation.baidao.com</IP>
+			<port>80</port>
+		</DownLoad> 
+		<upload>
+			<IP>ftp.gwstation.baidao.com</IP>
+			<port>21</port>
+			<user>downloader</user>
+			<pwd>downloader</pwd>
+		</upload>
+		<trade_ip>
+			<IP>trade.baidao.com</IP>
+			<port>8887</port>
+			<key>432cd252a325aa6bb4b56219f4add9df</key>
+		</trade_ip>  
+	</loginInfo>
+</config>

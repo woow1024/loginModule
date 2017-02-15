@@ -1,0 +1,274 @@
+The system is: Linux - 2.6.32-642.el6.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/2.8.12.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1396003918/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1396003918.dir/build.make CMakeFiles/cmTryCompileExec1396003918.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1396003918.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1396003918.dir/testCCompiler.c.o   -c /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec1396003918
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1396003918.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1396003918.dir/testCCompiler.c.o  -o cmTryCompileExec1396003918 -rdynamic 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2668523205/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2668523205.dir/build.make CMakeFiles/cmTryCompileExec2668523205.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec2668523205
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2668523205.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2668523205 -rdynamic  
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2668523205' '-rdynamic' '-mtune=generic'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec2668523205 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec2668523205/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2668523205.dir/build.make CMakeFiles/cmTryCompileExec2668523205.dir/build]
+  ignore line: [gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec2668523205]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2668523205.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2668523205 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2668523205' '-rdynamic' '-mtune=generic']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec2668523205 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec2668523205] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..]
+    arg [CMakeFiles/cmTryCompileExec2668523205.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.4.7;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+Determining if the getaddrinfo exist passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4194718591/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4194718591.dir/build.make CMakeFiles/cmTryCompileExec4194718591.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4194718591.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4194718591.dir/CheckSymbolExists.c.o   -c /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec4194718591
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4194718591.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec4194718591.dir/CheckSymbolExists.c.o  -o cmTryCompileExec4194718591 -rdynamic 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+File /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getaddrinfo
+  return ((int*)(&getaddrinfo))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the socket exist passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec550239044/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec550239044.dir/build.make CMakeFiles/cmTryCompileExec550239044.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec550239044.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec550239044.dir/CheckSymbolExists.c.o   -c /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec550239044
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec550239044.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec550239044.dir/CheckSymbolExists.c.o  -o cmTryCompileExec550239044 -rdynamic 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+File /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <sys/types.h>
+#include <sys/socket.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef socket
+  return ((int*)(&socket))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the poll exist passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4124461182/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4124461182.dir/build.make CMakeFiles/cmTryCompileExec4124461182.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4124461182.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec4124461182.dir/CheckSymbolExists.c.o   -c /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec4124461182
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4124461182.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec4124461182.dir/CheckSymbolExists.c.o  -o cmTryCompileExec4124461182 -rdynamic 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+File /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <poll.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef poll
+  return ((int*)(&poll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function clock_gettime exists in the rt passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec921179018/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec921179018.dir/build.make CMakeFiles/cmTryCompileExec921179018.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec921179018.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=clock_gettime   -o CMakeFiles/cmTryCompileExec921179018.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec921179018
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec921179018.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=clock_gettime    CMakeFiles/cmTryCompileExec921179018.dir/CheckFunctionExists.c.o  -o cmTryCompileExec921179018  -L/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/time.h -rdynamic -lrt -Wl,-rpath,/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/time.h 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+
+Determining if the function posix_spawnp exists in the rt passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1489078165/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1489078165.dir/build.make CMakeFiles/cmTryCompileExec1489078165.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1489078165.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=posix_spawnp   -o CMakeFiles/cmTryCompileExec1489078165.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1489078165
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1489078165.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=posix_spawnp    CMakeFiles/cmTryCompileExec1489078165.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1489078165  -L/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/spawn.h -rdynamic -lrt -Wl,-rpath,/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/spawn.h 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2104805021/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2104805021.dir/build.make CMakeFiles/cmTryCompileExec2104805021.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2104805021.dir/CheckIncludeFiles.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden     -o CMakeFiles/cmTryCompileExec2104805021.dir/CheckIncludeFiles.c.o   -c /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:5: warning: function declaration isn’t a prototype
+Linking C executable cmTryCompileExec2104805021
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2104805021.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden      CMakeFiles/cmTryCompileExec2104805021.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec2104805021 -rdynamic 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec778512187/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec778512187.dir/build.make CMakeFiles/cmTryCompileExec778512187.dir/build
+gmake[1]: Entering directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec778512187.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec778512187.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+/usr/share/cmake/Modules/CheckFunctionExists.c:3: warning: function declaration isn’t a prototype
+Linking C executable cmTryCompileExec778512187
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec778512187.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec778512187.dir/CheckFunctionExists.c.o  -o cmTryCompileExec778512187 -rdynamic -lpthread 
+gmake[1]: Leaving directory `/root/rabbitmq-c-0.8.0/librabbitmq/CMakeFiles/CMakeTmp'
+
+

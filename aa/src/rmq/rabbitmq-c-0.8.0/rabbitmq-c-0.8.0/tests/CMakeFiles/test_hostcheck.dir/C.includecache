@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/opt/rabbitmq-c-0.8.0/librabbitmq/amqp_hostcheck.c
+amqp_hostcheck.h
+/opt/rabbitmq-c-0.8.0/librabbitmq/amqp_hostcheck.h
+string.h
+-
+
+/opt/rabbitmq-c-0.8.0/librabbitmq/amqp_hostcheck.h
+
+/opt/rabbitmq-c-0.8.0/tests/test_hostcheck.c
+config.h
+/opt/rabbitmq-c-0.8.0/tests/config.h
+amqp_hostcheck.h
+/opt/rabbitmq-c-0.8.0/tests/amqp_hostcheck.h
+stdio.h
+-
+stdlib.h
+-
+
+librabbitmq/amqp_hostcheck.h
+
+librabbitmq/config.h
+
