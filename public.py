@@ -1,48 +1,50 @@
 from RabbitMq import RabbitMQ
 from Redis import RedisDb
+import time
+import logging
 
+HOST = '192.168.44.223'
+PORT_MQ = 5672
+PORT_REDIS = 6379
+USER_MQ = 'cc'
+PASSWD_MQ = '123'
+PASSWD_REDIS =''
+VHOST = 'test'
 
-redisServerInfo={'host':'192.168.44.223',
-                  'port':6379,
-                  'pwd':''}
-
-mqServerInfo={'host':'192.168.44.223',
-           'port':5672,
-           'user':'cc',
-           'pwd':'123',
-           'vhost':'test'}
-
-
-redis = RedisDb(host=redisServerInfo['host'], 
-                port=redisServerInfo['port'], 
-                pwd=redisServerInfo['pwd']
+att_dict={'func'}
+redis = RedisDb(host=HOST, 
+                port=PORT_REDIS, 
+                pwd=PASSWD_REDIS
                 )
 
-producer = RabbitMQ(host=mqServerInfo['host'], 
-                    port=mqServerInfo['port'], 
-                    user=mqServerInfo['user'], 
-                    pwd=mqServerInfo['pwd'],
-                    vhost=mqServerInfo['vhost'])
+producer = RabbitMQ(host=HOST, 
+                    port=PORT_MQ, 
+                    user=USER_MQ, 
+                    pwd=PASSWD_MQ,
+                    vhost=VHOST)
 
-consumer = RabbitMQ(host=mqServerInfo['host'], 
-                    port=mqServerInfo['port'], 
-                    user=mqServerInfo['user'], 
-                    pwd=mqServerInfo['pwd'],
-                    vhost=mqServerInfo['vhost'])
+consumer = RabbitMQ(host=HOST, 
+                    port=PORT_MQ, 
+                    user=USER_MQ, 
+                    pwd=PASSWD_MQ,
+                    vhost=VHOST)
 
 
 def send_to_mq(msg):
+    
     producer.start_producer(msg=msg, 
                             exchange='FSExchange1', 
                             routing_key='FSReplay')
+    logging.info("send %s" ,msg)
+    print "send [%s]" %msg
+    
 
  
 def write_redis(keyname,jsonAttr,jsonData):
-    global redis
     conn = redis.get_res_conn()
     if conn is None:
         logging.error("res_conn none : %s", str(error))
-        return 'false'    
+        return False    
     res = user_exists(keyname)
     if not res:
         return 'false'
@@ -68,12 +70,14 @@ def user_exists(keyname):
         return False       
     
 def delete_redis(keyname):
+    global att_dict
     conn = redis.get_res_conn()
     if conn is None:
-        logging.error("connect to redis failed : %s", str(error))
+        logging.error("res_conn none : %s", str(error))
         return False    
+    
     for i in att_dict:
         conn.hdel(keyname,i)
     h_data = conn.hgetall(keyname)
-            #print h_data 
+    #print h_data 
 

@@ -26,7 +26,8 @@ class RabbitMQ:
                                                credentials=auth
                                                )
             self.conn = pika.BlockingConnection(parameters)  
-            self.channel = self.conn.channel()  
+            self.channel = self.conn.channel() 
+            
             print 'connect rabbitmq success...'
         except Exception,e:
             print "connect mq error %s" %e
@@ -41,7 +42,7 @@ class RabbitMQ:
         
     def start_Consumer(self, exchange, queue, callback, routingKey ='answer'):
         try:
-            #设置最多分给worker2个任务，多余的分配给其他worker
+           
             self.channel.queue_declare(queue=queue, durable=True)  
             self.channel.queue_bind(exchange=exchange,  
                                         queue=queue, routing_key=routingKey)              

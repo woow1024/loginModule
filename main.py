@@ -12,6 +12,8 @@ import os
 import sys
 import logging
 import json
+import threading
+import time
 monkey.patch_all()
 
 MQ_VHOST = 'test'
@@ -29,6 +31,21 @@ def mq_loop(ch, method, properties, body):
         print(e)    
 
 
+def  connect_all():
+    global producer
+    global consumer
+    global redis
+    while(True):
+        try:
+            redis.connect()
+        except Exception, e:
+            logging.info("connet redis %s " %e)
+            print "make sure server is started"
+            
+        producer.connect_mq()
+        consumer.connect_mq() 
+        time.sleep(20)
+        
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
@@ -46,16 +63,13 @@ if __name__ == '__main__':
 
     logging.info("LoginModule is runing now, process id %d", os.getpid())
     
-    try:
-        redis.connect()
-    except Exception, e:
-        logging.Logger.info(e)
-        logging.info("connet redis " %e)
-        
-        
-    producer.connect_mq()
-    consumer.connect_mq()
+   
     
+    t = threading.Thread(target=connect_all, name='reconnect')
+    t.start()
+    #connect_all()
+    
+    time.sleep(1)
     consumer.start_Consumer(exchange='FSExchange1', 
                             queue='FSCenterBus123', 
                             callback=mq_loop,
