@@ -7,7 +7,7 @@ import json
 class RedisDb:
     def __init__(self, 
                  host='localhost',
-                 port=5676,
+                 port=6379,
                  pwd='',
                  db = ''):
         self.host = host
@@ -15,20 +15,19 @@ class RedisDb:
         self.pwd = pwd
         self.db = db
         
-    def connect(self): 
-        
+    def connect(self):
         self.pool = redis.ConnectionPool(host=self.host, 
                                          port= self.port, 
                                          db = self.db, 
                                          password =self.pwd)
-        self.conn = redis.Redis(connection_pool=self.pool)
-        
+        try:
+            self.conn = redis.Redis(connection_pool=self.pool)
+        except Exception, e:
+            raise e
+    
+
     def get_res_conn(self):
         return self.conn
               
     
-###############################################################################################华丽的分割线#################################
-    
-    
-
 

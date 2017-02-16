@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -O3 -DNDEBUG    CMakeFiles/amqp-get.dir/get.c.o CMakeFiles/amqp-get.dir/common.c.o  -o amqp-get -rdynamic ../librabbitmq/librabbitmq.so.4.2.0 -lpopt -lssl -lcrypto -lrt -lpthread -Wl,-rpath,/root/rabbitmq-c-0.8.0/librabbitmq/librabbitmq 

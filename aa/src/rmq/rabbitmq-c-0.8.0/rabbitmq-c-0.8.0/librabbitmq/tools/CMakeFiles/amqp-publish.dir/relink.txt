@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -O3 -DNDEBUG    CMakeFiles/amqp-publish.dir/publish.c.o CMakeFiles/amqp-publish.dir/common.c.o  -o CMakeFiles/CMakeRelink.dir/amqp-publish -rdynamic ../librabbitmq/librabbitmq.so.4.2.0 -lpopt -lssl -lcrypto -lrt -lpthread 

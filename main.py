@@ -8,10 +8,20 @@ from gevent import monkey
 from public import redis
 from public import producer
 from public import consumer
+import os
+import sys
 import logging
-
+import json
+import threading
+import time
 monkey.patch_all()
-    
+
+MQ_VHOST = 'test'
+WORKING_DIR = os.path.dirname(sys.argv[0])
+WORKING_DIR = os.path.dirname(WORKING_DIR)
+LOG_DIR = os.path.join(WORKING_DIR, "log")
+LOG_FILENAME = os.path.join(LOG_DIR, "LoginModule.log")
+
 def mq_loop(ch, method, properties, body):
     try:
         http = Http()
@@ -21,18 +31,44 @@ def mq_loop(ch, method, properties, body):
         print(e)    
 
 
+
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        stream=sys.stdout,
+                        )
+
+  
+    console = logging.FileHandler(LOG_FILENAME, "a")
+    console.setLevel(logging.INFO)
+    formatter = logging.Formatter(fmt='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
+                                      datefmt='%Y-%m-%d %H:%M:%S')
+    console.setFormatter(formatter)
+    logging.getLogger().addHandler(console)  
+
+    logging.info("LoginModule is runing now, process id %d", os.getpid())
+    
+   
+    
+    #t = threading.Thread(target=connect_all, name='reconnect')
+    #t.start()
+    #connect_all()
     try:
         redis.connect()
     except Exception, e:
-        logging.Logger.info(e)
-        print "connet redis " %e
+        logging.info("connet redis %s " %e)
+        print "make sure server is started"
     
-    res = producer.connect_mq(queue='my_queue1')
-    if res is None:
-        print "process error for mq connection"
-        exit() 
-    consumer.connect_mq(queue='my_queue')
-    consumer.start_Consumer(mq_loop)
+    try:    
+        producer.connect_mq()
+        consumer.connect_mq()
+    except Exception,e:
+        logging.error("mq connect error %s" %e)
+    
+    consumer.start_Consumer(exchange='FSExchange1', 
+                            queue='FSCenterBus123', 
+                            callback=mq_loop,
+                            routingKey='answer')
     
     

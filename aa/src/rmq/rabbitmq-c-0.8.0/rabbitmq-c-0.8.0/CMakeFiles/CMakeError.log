@@ -1,0 +1,374 @@
+Determining if the htonll exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec544344495/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec544344495.dir/build.make CMakeFiles/cmTryCompileExec544344495.dir/build
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec544344495.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec544344495.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: ‘htonll’ undeclared (first use in this function)
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: (Each undeclared identifier is reported only once
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: for each function it appears in.)
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [CMakeFiles/cmTryCompileExec544344495.dir/CheckSymbolExists.c.o] Error 1
+gmake: *** [cmTryCompileExec544344495/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <arpa/inet.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef htonll
+  return ((int*)(&htonll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_GNU90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4030064886/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4030064886.dir/build.make CMakeFiles/cmTryCompileExec4030064886.dir/build
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4030064886.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_GNU90   -std=gnu90 -o CMakeFiles/cmTryCompileExec4030064886.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=gnu90"
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [CMakeFiles/cmTryCompileExec4030064886.dir/src.c.o] Error 1
+gmake: *** [cmTryCompileExec4030064886/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_C90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2143970070/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2143970070.dir/build.make CMakeFiles/cmTryCompileExec2143970070.dir/build
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2143970070.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_C90   -std=c90 -o CMakeFiles/cmTryCompileExec2143970070.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=c90"
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [CMakeFiles/cmTryCompileExec2143970070.dir/src.c.o] Error 1
+gmake: *** [cmTryCompileExec2143970070/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2973710236/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2973710236.dir/build.make CMakeFiles/cmTryCompileExec2973710236.dir/build
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2973710236.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden     -o CMakeFiles/cmTryCompileExec2973710236.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec2973710236
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2973710236.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden      CMakeFiles/cmTryCompileExec2973710236.dir/CheckSymbolExists.c.o  -o cmTryCompileExec2973710236 -rdynamic 
+CMakeFiles/cmTryCompileExec2973710236.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0xc): undefined reference to `pthread_create'
+collect2: ld returned 1 exit status
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec2973710236] Error 1
+gmake: *** [cmTryCompileExec2973710236/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec527129270/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec527129270.dir/build.make CMakeFiles/cmTryCompileExec527129270.dir/build
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec527129270.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec527129270.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+/usr/share/cmake/Modules/CheckFunctionExists.c:3: warning: function declaration isn’t a prototype
+Linking C executable cmTryCompileExec527129270
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec527129270.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec527129270.dir/CheckFunctionExists.c.o  -o cmTryCompileExec527129270 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec527129270] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec527129270/fast] Error 2
+
+
+Determining if the htonll exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec623610409/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec623610409.dir/build.make CMakeFiles/cmTryCompileExec623610409.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec623610409.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec623610409.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: ‘htonll’ undeclared (first use in this function)
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: (Each undeclared identifier is reported only once
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: for each function it appears in.)
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [CMakeFiles/cmTryCompileExec623610409.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec623610409/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <arpa/inet.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef htonll
+  return ((int*)(&htonll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_GNU90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec386754541/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec386754541.dir/build.make CMakeFiles/cmTryCompileExec386754541.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec386754541.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_GNU90   -std=gnu90 -o CMakeFiles/cmTryCompileExec386754541.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=gnu90"
+gmake[2]: *** [CMakeFiles/cmTryCompileExec386754541.dir/src.c.o] Error 1
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec386754541/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_C90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1570131620/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1570131620.dir/build.make CMakeFiles/cmTryCompileExec1570131620.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1570131620.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_C90   -std=c90 -o CMakeFiles/cmTryCompileExec1570131620.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=c90"
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [CMakeFiles/cmTryCompileExec1570131620.dir/src.c.o] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec1570131620/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4252597823/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4252597823.dir/build.make CMakeFiles/cmTryCompileExec4252597823.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4252597823.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden     -o CMakeFiles/cmTryCompileExec4252597823.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec4252597823
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4252597823.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden      CMakeFiles/cmTryCompileExec4252597823.dir/CheckSymbolExists.c.o  -o cmTryCompileExec4252597823 -rdynamic 
+CMakeFiles/cmTryCompileExec4252597823.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0xc): undefined reference to `pthread_create'
+collect2: ld returned 1 exit status
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [cmTryCompileExec4252597823] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec4252597823/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1595924679/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1595924679.dir/build.make CMakeFiles/cmTryCompileExec1595924679.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1595924679.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec1595924679.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+/usr/share/cmake/Modules/CheckFunctionExists.c:3: warning: function declaration isn’t a prototype
+Linking C executable cmTryCompileExec1595924679
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1595924679.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec1595924679.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1595924679 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ld returned 1 exit status
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [cmTryCompileExec1595924679] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec1595924679/fast] Error 2
+
+
+Determining if the htonll exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3284846938/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3284846938.dir/build.make CMakeFiles/cmTryCompileExec3284846938.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3284846938.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3284846938.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: ‘htonll’ undeclared (first use in this function)
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: (Each undeclared identifier is reported only once
+/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8: error: for each function it appears in.)
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [CMakeFiles/cmTryCompileExec3284846938.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec3284846938/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <arpa/inet.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef htonll
+  return ((int*)(&htonll))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_GNU90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2829617851/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2829617851.dir/build.make CMakeFiles/cmTryCompileExec2829617851.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2829617851.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_GNU90   -std=gnu90 -o CMakeFiles/cmTryCompileExec2829617851.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=gnu90"
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [CMakeFiles/cmTryCompileExec2829617851.dir/src.c.o] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec2829617851/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Performing C SOURCE FILE Test HAVE_C90 failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1200082385/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1200082385.dir/build.make CMakeFiles/cmTryCompileExec1200082385.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1200082385.dir/src.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DHAVE_C90   -std=c90 -o CMakeFiles/cmTryCompileExec1200082385.dir/src.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/src.c
+cc1: error: unrecognized command line option "-std=c90"
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [CMakeFiles/cmTryCompileExec1200082385.dir/src.c.o] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec1200082385/fast] Error 2
+
+Source file was:
+int main(void) { return 0; }
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3450434699/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3450434699.dir/build.make CMakeFiles/cmTryCompileExec3450434699.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3450434699.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden     -o CMakeFiles/cmTryCompileExec3450434699.dir/CheckSymbolExists.c.o   -c /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec3450434699
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3450434699.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden      CMakeFiles/cmTryCompileExec3450434699.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3450434699 -rdynamic 
+CMakeFiles/cmTryCompileExec3450434699.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0xc): undefined reference to `pthread_create'
+collect2: ld returned 1 exit status
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[2]: *** [cmTryCompileExec3450434699] Error 1
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec3450434699/fast] Error 2
+
+File /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3822306122/fast"
+gmake[1]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3822306122.dir/build.make CMakeFiles/cmTryCompileExec3822306122.dir/build
+gmake[2]: Entering directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3822306122.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec3822306122.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+/usr/share/cmake/Modules/CheckFunctionExists.c:3: warning: function declaration isn’t a prototype
+Linking C executable cmTryCompileExec3822306122
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3822306122.dir/link.txt --verbose=1
+/usr/bin/cc  -Wall -Wextra -Wstrict-prototypes -Wno-unused-function -fno-common -fvisibility=hidden  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec3822306122.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3822306122 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ld returned 1 exit status
+gmake[2]: *** [cmTryCompileExec3822306122] Error 1
+gmake[2]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: Leaving directory `/opt/rabbitmq-c-0.8.0/CMakeFiles/CMakeTmp'
+gmake[1]: *** [cmTryCompileExec3822306122/fast] Error 2
+
+

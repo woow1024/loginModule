@@ -1,0 +1,57 @@
+'\" t
+.\"     Title: librabbitmq-tools
+.\"    Author: The RabbitMQ Team <\m[blue]\fBinfo@rabbitmq.com\fR\m[]>
+.\" Generator: DocBook XSL Stylesheets v1.75.2 <http://docbook.sf.net/>
+.\"      Date: 2016-12-29
+.\"    Manual: RabbitMQ C Client
+.\"    Source: RabbitMQ C Client
+.\"  Language: English
+.\"
+.TH "LIBRABBITMQ\-TOOLS" "7" "2016\-12\-29" "RabbitMQ C Client" "RabbitMQ C Client"
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+librabbitmq-tools \- Command line AMQP tools
+.SH "DESCRIPTION"
+.PP
+A set of command line AMQP tools based on
+librabbitmq\&. This page describes common options and conventions used by all of the tools\&.
+.SH "COMMON OPTIONS"
+.PP
+\fB\-s\fR, \fB\-\-server\fR=\fIhostname:port\fR
+.RS 4
+The host name (or address) to connect to\&. Defaults to localhost\&. The port number may also be specified; if omitted, it defaults to the standard AMQP port number (5672)\&.
+.RE
+.PP
+\fB\-\-vhost\fR=\fIvhost\fR
+.RS 4
+The AMQP vhost to specify when connnecting\&. Defaults to
+/\&.
+.RE
+.PP
+\fB\-\-username\fR=\fIusername\fR
+.RS 4
+The username to authenticate to the AMQP server with\&. Defaults to
+guest\&.
+.RE
+.PP
+\fB\-\-password\fR=\fIpassword\fR
+.RS 4
+The password to authenticate to the AMQP server with\&. Defaults to
+guest\&.
+.RE
+.SH "SEE ALSO"
+.PP
+
+\fBamqp-publish\fR(1), \fBamqp-consume\fR(1), \fBamqp-get\fR(1)
+.SH "AUTHOR"
+.PP
+\fBThe RabbitMQ Team <\fR\fB\m[blue]\fBinfo@rabbitmq\&.com\fR\m[]\fR\fB>\fR
