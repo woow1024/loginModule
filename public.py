@@ -31,10 +31,15 @@ consumer = RabbitMQ(host=HOST,
 
 
 def send_to_mq(msg):
-    
-    producer.start_producer(msg=msg, 
+    try:
+        producer.connect_mq()
+        producer.start_producer(msg=msg, 
                             exchange='FSExchange1', 
                             routing_key='FSReplay')
+        
+    except Exception,e:
+        raise "reconnet error:" ,e
+          
     logging.info("send %s" ,msg)
     print "send [%s]" %msg
     

@@ -12,7 +12,8 @@ from public import write_redis
 import logging
 import datetime
 
-ini_url = 'http://test.user-api.yinrui99.com/apis/pc/yg/client/login?sid=3'
+i = 0
+ini_url = 'http://test.user-api.yinrui99.com/apis/pc/yg/client/login'
 class Http:
     def __init__(self, ):
         pass
@@ -24,11 +25,17 @@ class Http:
             req=urllib2.Request(url)
             resp = urllib2.urlopen(req)
         except Exception, e:
-            logging.info("send login request error[%s]"%e)	
-            return False
-        self.res_data = resp.read()
-        resp.close()
-        return True
+            raise e
+            
+        try:
+            self.res_data = resp.read()
+        except Exception,e:
+            resp.close()
+            raise "url read:",e
+        
+        finally:
+            resp.close()
+
         
         #send_to_mq(self.res_data)
     def return_json_res(self, iniStr):
@@ -45,7 +52,7 @@ class Http:
             
            # keyname = result['user']['username']  
         except Exception, e:
-            print(e)
+            raise e
 
     def pool_method(self, url):
         try:
@@ -70,10 +77,10 @@ class Http:
     def __compos_url(self,jsonDdata):
         try:
             global ini_url
-            new_url = ini_url + '&u=' + jsonDdata['usr'] + '&p=' + jsonDdata['pwd']
+            new_url = '?sid=3'+ ini_url + '&u=' + jsonDdata['usr'] + '&p=' + jsonDdata['pwd']
             return new_url
         except Exception, e:
-            print(e)  
+            raise e
             
             
     def prepare_send_to_mq(self,iniJsonData, serverData, serverArrive):
@@ -110,18 +117,24 @@ class Http:
             resData['action'] = res
        
         send_to_mq(json.dumps(resData))
-        
+
     def work(self, msg):
+
         begin = datetime.datetime.now()
-        jsonData = self.return_json_res(msg)
-        url = self.__compos_url(jsonData)
-        if not self.send_login_request(url):
-            self.prepare_send_to_mq(jsonData,"", False)
-            return False
-        res = self.decode_login_res()
-        self.prepare_send_to_mq(jsonData,res,True)
+        try:
+            jsonData = self.return_json_res(msg)
+            url = self.__compos_url(jsonData)
+            self.send_login_request(url)
+            res = self.decode_login_res()
+        except Exception,e:
+            self.prepare_send_to_mq(jsonData,res,False)
+        finally:
+            self.prepare_send_to_mq(jsonData,res,True)
+            print 'end'
+
         end = datetime.datetime.now()
         print  end-begin
+
         
         
    

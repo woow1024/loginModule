@@ -27,12 +27,9 @@ class RabbitMQ:
                                                )
             self.conn = pika.BlockingConnection(parameters)  
             self.channel = self.conn.channel() 
-            
             print 'connect rabbitmq success...'
         except Exception,e:
-            print "connect mq error %s" %e
-            return None
-        return True
+            raise "connect mq error %s" %e
         
     def get_channel(self):
         return self.channel
@@ -57,15 +54,19 @@ class RabbitMQ:
     def start_producer(self, msg, exchange, routing_key='FSReplay'):   
         try:
             #json_str = json.dumps(msg)
+            self.channel.exchange_declare(exchange=exchange,type='direct')
             self.channel.basic_publish(exchange=exchange,
                                    routing_key=routing_key,
                                    body=msg,
                                    properties=pika.BasicProperties(
                                        #delivery_mode = 2
-                                   ))	
+                                   ))
+
         except Exception, e:
             print e
-            #print("%s %s",__file__,e)   
+            #self.channel.close()
+            
+            print("%s %s",__file__,e)   
             
     def confirm(self, ch, method):
             ch.basic_ack(delivery_tag=method.delivery_tag)

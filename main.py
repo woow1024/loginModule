@@ -31,26 +31,12 @@ def mq_loop(ch, method, properties, body):
         print(e)    
 
 
-def  connect_all():
-    global producer
-    global consumer
-    global redis
-    while(True):
-        try:
-            redis.connect()
-        except Exception, e:
-            logging.info("connet redis %s " %e)
-            print "make sure server is started"
-            
-        producer.connect_mq()
-        consumer.connect_mq() 
-        time.sleep(20)
-        
+
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S',
-                        filename=LOG_FILENAME,
+                        stream=sys.stdout,
                         )
 
   
@@ -65,11 +51,21 @@ if __name__ == '__main__':
     
    
     
-    t = threading.Thread(target=connect_all, name='reconnect')
-    t.start()
+    #t = threading.Thread(target=connect_all, name='reconnect')
+    #t.start()
     #connect_all()
+    try:
+        redis.connect()
+    except Exception, e:
+        logging.info("connet redis %s " %e)
+        print "make sure server is started"
     
-    time.sleep(1)
+    try:    
+        producer.connect_mq()
+        consumer.connect_mq()
+    except Exception,e:
+        logging.error("mq connect error %s" %e)
+    
     consumer.start_Consumer(exchange='FSExchange1', 
                             queue='FSCenterBus123', 
                             callback=mq_loop,
