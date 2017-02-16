@@ -35,4 +35,6 @@ public:
 	afx_msg void OnBnClickedButtonLogin2();
 	afx_msg LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	CString m_csBody;
+	afx_msg void OnEnChangeEditBody();
+	afx_msg void OnLvnItemchangedListMarket(NMHDR *pNMHDR, LRESULT *pResult);
 };
