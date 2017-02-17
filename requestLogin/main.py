@@ -20,6 +20,7 @@ MQ_VHOST = 'test'
 WORKING_DIR = os.path.dirname(sys.argv[0])
 WORKING_DIR = os.path.dirname(WORKING_DIR)
 LOG_DIR = os.path.join(WORKING_DIR, "log")
+CONF_DIR = os.path.join(WORKING_DIR, "conf")
 LOG_FILENAME = os.path.join(LOG_DIR, "LoginModule.log")
 
 def mq_loop(ch, method, properties, body):
@@ -31,7 +32,20 @@ def mq_loop(ch, method, properties, body):
         print(e)    
 
 
+def read_conf(path):
+    try:
+        fileObj = open(path,'r')
+    except Exception,e:
+        raise e
+    try:
+        readObj = fileObj.read()
+    except Exception,e:
+        fileObj.close()
+    
+    fileObj.close()
+    return readObj
 
+        
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
