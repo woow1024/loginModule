@@ -113,8 +113,9 @@ class Http:
         if  serverData['success'] :
             #检查redis
             tjPriv = serverData['r'][0][u'func']
-            res = write_redis(iniJsonData['usr'], 'func',tjPriv )  
-            #delete_redis(iniJsonData['usr'])
+            res = write_redis(resData['from'], 'func',tjPriv )  
+            #write_redis(resData['from'], 'from',resData['from'] )  
+            #delete_redis(resData['from'])
             resData['permission'] = serverData['r'][0][u'permission']
             resData['func'] = tjPriv
             resData['action'] = res

@@ -11,7 +11,7 @@ PASSWD_MQ = '123'
 PASSWD_REDIS =''
 VHOST = 'test'
 
-att_dict={'func'}
+att_dict={'func','from'}
 redis = RedisDb(host=HOST, 
                 port=PORT_REDIS, 
                 pwd=PASSWD_REDIS
@@ -32,14 +32,14 @@ consumer = RabbitMQ(host=HOST,
 
 def send_to_mq(msg):
     try:
-        producer.connect_mq()
+        #producer.connect_mq()
         producer.start_producer(msg=msg, 
                             exchange='FSExchange1', 
                             routing_key='FSReplay')
         
     except Exception,e:
         raise "reconnet error:" ,e
-    producer.channel.close()    
+    #producer.channel.close()    
     logging.info("send %s" ,msg)
     print "send [%s]" %msg
     

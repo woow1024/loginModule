@@ -37,12 +37,15 @@ class RabbitMQ:
     def set_queue_count(self, count):
         self.prfetch_count = count
         
-    def start_Consumer(self, exchange, queue, callback, routingKey ='answer'):
+    def start_Consumer(self, exchange, queue, callback, serverLists):
         try:
+            self.channel.queue_declare(queue=queue, durable=True) 
            
-            self.channel.queue_declare(queue=queue, durable=True)  
-            self.channel.queue_bind(exchange=exchange,  
-                                        queue=queue, routing_key=routingKey)              
+            for serverList in serverLists:
+                #将队列绑定到不同的routingKey上
+                self.channel.queue_bind(exchange=exchange,  
+                                        queue=queue, routing_key=serverList) 
+                
             self.channel.basic_qos(prefetch_count=self.prfetch_count)
             self.channel.basic_consume(callback, queue = queue,
                                                no_ack=False)

@@ -8,6 +8,7 @@ from gevent import monkey
 from public import redis
 from public import producer
 from public import consumer
+from public import delete_redis
 import os
 import sys
 import logging
@@ -24,12 +25,20 @@ CONF_DIR = os.path.join(WORKING_DIR, "conf")
 LOG_FILENAME = os.path.join(LOG_DIR, "LoginModule.log")
 
 def mq_loop(ch, method, properties, body):
-    try:
-        http = Http()
-        http.normal_method(body)
+    print " [x] %r:%r" % (method.routing_key, body,) 
+    key = method.routing_key
+    if('logout' == key):
+        print body
+        delete_redis(body)
         ch.basic_ack(delivery_tag=method.delivery_tag)
-    except Exception, e:
-        print(e)    
+    
+    if('answer' == key):
+        try:
+            http = Http()
+            http.normal_method(body)
+            ch.basic_ack(delivery_tag=method.delivery_tag)
+        except Exception, e:
+            print(e)    
 
 
 def read_conf(path):
@@ -54,7 +63,11 @@ if __name__ == '__main__':
                         )
 
   
+    if not os.path.exists(LOG_DIR):
+            os.makedirs(LOG_DIR)
+  
     console = logging.FileHandler(LOG_FILENAME, "a")
+    
     console.setLevel(logging.INFO)
     formatter = logging.Formatter(fmt='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s : %(message)s',
                                       datefmt='%Y-%m-%d %H:%M:%S')
@@ -71,14 +84,16 @@ if __name__ == '__main__':
         print "make sure server is started"
     
     try:    
-        #producer.connect_mq()
+        producer.connect_mq()
         consumer.connect_mq()
     except Exception,e:
         logging.error("mq connect error %s" %e)
     
+    serverLists = ['answer','logout']
+        
     consumer.start_Consumer(exchange='FSExchange1', 
                             queue='FSCenterBus123', 
                             callback=mq_loop,
-                            routingKey='answer')
+                            serverLists=serverLists)
     
     
