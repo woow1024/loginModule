@@ -52,6 +52,7 @@ private:
 	void HanldeAllPacketThread(void* param);
 	void HanlleHeartBeatThread(void* param);
 	void HanlleAllSendThread(void* param);	//用户请求处理线程
+	void HandleLogoutThread(void *param);	//处理socket断开logout
 
 	void RemoveDeadSocket();
 public:

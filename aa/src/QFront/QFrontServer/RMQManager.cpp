@@ -148,7 +148,6 @@ void CRMQManager::HandleRMQQuequeThread(void* param)
 void CRMQManager::Publish(string& strJson, bool bRPC, string strRouterKey)
 {
 
-	gettimeofday( &start, NULL );
 	if(NULL == m_pRMQ)
 	{
 		return;
@@ -167,4 +166,14 @@ void CRMQManager::Publish(string& strJson, bool bRPC, string strRouterKey)
 	cout << "queue name :"<<strReplayQueque << endl;
 	m_pExchange->Publish(strJson, strRouterKey);
 	pthread_mutex_unlock(&m_mutex);
+}
+
+void CRMQManager::PublishLogout(int nID, string strRouterKey /*= string("logout")*/)
+{
+	string strID;
+	char  cBuf[16];
+	sprintf(cBuf,"%d",nID);
+	strID = cBuf;
+	m_pExchange->Publish(strID,strRouterKey);
+
 }

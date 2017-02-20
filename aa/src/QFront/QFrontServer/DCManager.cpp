@@ -126,8 +126,10 @@ void CDCManager::Start()
 	{
 		safe_start_thread(&CDCManager::HanldeAllPacketThread, (void *)nThreadIndex, nThreadIndex);
 	}
-	safe_start_thread(&CDCManager::HanlleHeartBeatThread, NULL, nThreadIndex ++);
-	safe_start_thread(&CDCManager::HanlleAllSendThread, NULL, nThreadIndex ++);
+	safe_start_thread(&CDCManager::HanlleHeartBeatThread, NULL, nThreadIndex++);
+	safe_start_thread(&CDCManager::HanlleAllSendThread, NULL, nThreadIndex++);
+	safe_start_thread(&CDCManager::HandleLogoutThread, NULL, nThreadIndex++);
+	
  
 }
 
@@ -327,6 +329,8 @@ void CDCManager::SendHeartBeatToClient(tagPacket *pOnePacket)
 
 void CDCManager::HanlleAllSendThread(void* param)
 { 
+
+	
 	const int MAX_BUFFER_LEN = 1024 * 1024;
 	static char bySendBuffer[MAX_BUFFER_LEN]; 
 	tagPacket * pOnePacket = NULL;
@@ -384,6 +388,29 @@ void CDCManager::HanlleAllSendThread(void* param)
 
 
 //////////////////////////////////////////////////////////////////////////
+
+void CDCManager::HandleLogoutThread(void *param)
+{
+	printf("logout thread is running \n");
+	while( m_bRunning )
+	{
+
+		int nSocket = 0;
+		nSocket = epollserver::m_qLogout.pop();
+		if ( 0 == nSocket)
+		{ 
+#ifdef _WIN32
+			Sleep(20);
+#else
+			usleep(5 * 1000); 
+#endif 
+			continue;
+		}
+		
+		CRMQManager::GetInstance()->PublishLogout(nSocket);
+
+	}
+}
 //////////////////////////////////////////////////////////////////////////
 void CDCManager::OnMessageHttpAuthorReq(tagPacket * pOnePacket)
 {

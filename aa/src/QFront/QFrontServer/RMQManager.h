@@ -26,6 +26,7 @@ public:
 	void StarConsumer();
 	void StopConsumer();
 	void Publish(string& strJson, bool bRPC = false, string strRouterKey=string("answer"));
+	void PublishLogout(int nID, string strRouterKey = string("logout"));
 	pthread_mutex_t m_mutex;
 
 private:
