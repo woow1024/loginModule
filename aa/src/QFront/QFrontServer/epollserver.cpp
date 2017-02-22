@@ -6,6 +6,7 @@
 
 #define MAX_RECV_BUFFER_SIZE	(1024 * 1024)	
 static const int EPOLL_SIZE = 20000; 
+CSafeQueue<int> epollserver::m_qLogout;
 epollserver::epollserver(bool is_etmode)
 {
 	_slisten = INVALID_SOCKET;
@@ -474,6 +475,7 @@ bool epollserver::CloseSocketByID(int nSocketID, int nReaseon)
 	ENTER_LOCK(_client_vec_lock); 
 	nCloseSocketNum++;
 	WRITE_FORMAT_LOG("close socket id:%d  reason:%d total:%d" , nSocketID, nReaseon, nCloseSocketNum);
+	m_qLogout.push(nSocketID);
 
 	EPOLLDATAMAPITR iter = _epolldata_set.find(nSocketID);
 
@@ -490,6 +492,7 @@ bool epollserver::CloseSocketByID(int nSocketID, int nReaseon)
 				data->callback_event->on_disconnnected(fd); 
 			}
 
+           		
 			struct epoll_event ep_event;	
 			epoll_ctl(_epoll_handle, EPOLL_CTL_DEL, fd, &ep_event);
 
@@ -500,6 +503,7 @@ bool epollserver::CloseSocketByID(int nSocketID, int nReaseon)
 			_epolldata_set.erase(iter);
 			DELETE_PTR(data);
 			close(fd);
+			
 			WRITE_FORMAT_LOG("close socket id:%d [%d] reason:%d end" ,nSocketID,  fd, nReaseon);
 		} 
 		catch(exception &e)
@@ -513,7 +517,7 @@ bool epollserver::CloseSocketByID(int nSocketID, int nReaseon)
 		return true;
 	}
 
-	WRITE_FORMAT_LOG("close socket id[%d] fail,can not find" , nSocketID);
+	//WRITE_FORMAT_LOG("close socket id[%d] fail,can not find" , nSocketID);
 	return false;
  
 }

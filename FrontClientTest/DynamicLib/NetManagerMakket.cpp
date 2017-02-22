@@ -262,6 +262,7 @@ void CNetManagerMakket::PushOnePacket(int iCmd,string &strJson)
 
 
 	int nPacketLen = sizeof(tagTTPacketMarketHead) + strJson.length() + 1;
+	int a = sizeof(tagTTPacketMarketHead);
 	char *pszBuffer = new char[nPacketLen];
 	ZeroMemory(pszBuffer, nPacketLen);
 	Market * pOnePacket = (Market *)pszBuffer;

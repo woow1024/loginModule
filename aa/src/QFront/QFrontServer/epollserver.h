@@ -1,6 +1,7 @@
 #include <easywork.h>
 #include <sys/epoll.h>
 #include "safethread.h"
+#include "safequeue.h"
 
 
 struct net_event_callback;
@@ -59,6 +60,7 @@ struct net_event_callback
 	_net_event_on_epolldata_destroy *on_epolldata_destroy;
 };
 
+
 class epollserver : public safe_thread_base<epollserver, 2>
 {
 	DECLARE_VECTOR (int, CLIENTVEC)
@@ -67,6 +69,7 @@ public:
 	epollserver(bool is_etmode = true);
 	~epollserver();
 
+	static CSafeQueue<int> m_qLogout;
 	bool send_data_to_peer(int s, const char* data, size_t len);
 
 	bool listen_at(const char* ip, int port, net_event_callback* event, int server_identify = -1);		// server_identify must be negative
