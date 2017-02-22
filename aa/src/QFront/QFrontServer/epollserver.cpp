@@ -475,7 +475,7 @@ bool epollserver::CloseSocketByID(int nSocketID, int nReaseon)
 	ENTER_LOCK(_client_vec_lock); 
 	nCloseSocketNum++;
 	WRITE_FORMAT_LOG("close socket id:%d  reason:%d total:%d" , nSocketID, nReaseon, nCloseSocketNum);
-	 m_qLogout.push(nSocketID);
+	m_qLogout.push(nSocketID);
 
 	EPOLLDATAMAPITR iter = _epolldata_set.find(nSocketID);
 

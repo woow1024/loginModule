@@ -126,9 +126,11 @@ void CDCManager::Start()
 	{
 		safe_start_thread(&CDCManager::HanldeAllPacketThread, (void *)nThreadIndex, nThreadIndex);
 	}
-	safe_start_thread(&CDCManager::HanlleHeartBeatThread, NULL, nThreadIndex++);
-	safe_start_thread(&CDCManager::HanlleAllSendThread, NULL, nThreadIndex++);
+	
 	safe_start_thread(&CDCManager::HandleLogoutThread, NULL, nThreadIndex++);
+	safe_start_thread(&CDCManager::HanlleAllSendThread, NULL, nThreadIndex++);
+	safe_start_thread(&CDCManager::HanlleHeartBeatThread, NULL, nThreadIndex++);
+	
 	
  
 }

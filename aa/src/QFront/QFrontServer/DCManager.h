@@ -23,7 +23,7 @@ struct tagServerInfo
 };
 
 typedef CSafeQueue<tagPacket*> ListDataPacket;
-class CDCManager:public new_singletonbase<CDCManager>,public safe_thread_base<CDCManager, 4>
+class CDCManager:public new_singletonbase<CDCManager>,public safe_thread_base<CDCManager, 5>
 {
 	friend class new_singletonbase<CDCManager>;
 protected:

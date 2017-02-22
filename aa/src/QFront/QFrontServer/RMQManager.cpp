@@ -1,5 +1,7 @@
 #include <netdb.h>
 #include <sys/socket.h>
+#include <arpa/inet.h>
+#include <ifaddrs.h>
 
 #include <stdio.h> 
 #include <unistd.h> 
@@ -45,27 +47,33 @@ void CRMQManager::InitInstance()
 
 string GetLocalHostIP()
 {
-	char hname[128];
-	struct hostent *hent;
-	gethostname(hname, sizeof(hname));
-	printf("hostname=[%s]\n",hname);
-	hent = gethostbyname(hname);
-	if( hent == NULL )
-	{
-	   printf("gethostbyname error,%s,%s",hname,strerror(errno));
-	   return "error";
+	struct ifaddrs  *ifAddrStruct=NULL;
+	void *tmpAddrPtr = NULL;
+	string strIP = "default";
 
-	}
-	else
+	getifaddrs(&ifAddrStruct);
+	if( NULL == ifAddrStruct)
 	{
-	  char *ptr;
-	  for( int i=0; hent->h_addr_list[i]; i++ )
-	  {
-		sprintf(hname, "%s", inet_ntoa(*(struct in_addr*)(hent->h_addr_list[i])));
-	   }
-	  string strIP = hname;
-	  return strIP;
-	 }
+		return strIP;
+	}
+	while( NULL != ifAddrStruct )
+	{
+		if( ifAddrStruct->ifa_addr->sa_family == AF_INET)
+		{
+			tmpAddrPtr = &((struct sockaddr_in *)ifAddrStruct->ifa_addr)->sin_addr;
+			char addressBuffer[INET_ADDRSTRLEN];
+			inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
+			if( strcmp(addressBuffer, "127.0.0.1") )
+			{
+				strIP = addressBuffer;
+				printf("%s\n",addressBuffer);
+				break;
+
+			}
+		}
+		ifAddrStruct = ifAddrStruct->ifa_next;
+	}
+	
 }
 
 CRMQManager::~CRMQManager(void)
@@ -97,9 +105,8 @@ void CRMQManager::InitRMQ()
 //	pCenterQueque->Declare("FSCenterBus2");	
 //	pCenterQueque->Bind(szExchangeKey, "answer");
 
-
 	char szKey[128];
-	sprintf(szKey, "FS.%s_14", "test111");
+	sprintf(szKey, "FS.%s_%d", strIP.c_str(),nThreadID);
 
 	m_pReplayQueque = m_pRMQ->createQueue(szKey);
 	m_pReplayQueque->Declare(); //еекШ
