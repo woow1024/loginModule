@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-  
 
-from RabbitMq import RabbitMQ
+from RabbitConsumer import RabbitConsumer
 from Redis import RedisDb
 from Http import Http
 from gevent import monkey
@@ -54,6 +54,34 @@ def read_conf(path):
     fileObj.close()
     return readObj
 
+
+def func_producer():
+    producer.set_args('FSExchange1', 
+                          'direct', 
+                          'FSReplay', 
+                          'answer',
+                          on_msg_callcack=None)            
+    try:  
+        producer.run()
+    except Exception, e:
+        print e
+
+def func_consumer():
+    serverLists = ['answer','logout'] 
+    while True: 
+        try:    
+            consumer.connect()
+            consumer.start_Consumer(exchange='FSExchange1', 
+                                    queue='FSCenterBus123', 
+                                    callback=mq_loop,
+                                    serverLists=serverLists)            
+        except Exception,e:
+            logging.error("mq connect error %s" %e)
+            print('lose connection, reopen in 3 seconds...')
+            time.sleep(5) 
+            continue
+        else:
+            break
         
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO,
@@ -76,24 +104,26 @@ if __name__ == '__main__':
 
     logging.info("LoginModule is runing now, process id %d", os.getpid())
     
-   
+    
     try:
         redis.connect()
     except Exception, e:
         logging.info("connet redis %s " %e)
         print "make sure server is started"
+       
+    t1 = threading.Thread(target = func_producer)
+    t2 = threading.Thread(target = func_consumer)
     
-    try:    
-        producer.connect_mq()
-        consumer.connect_mq()
-    except Exception,e:
-        logging.error("mq connect error %s" %e)
+    t1.start()
+    t2.start()
     
-    serverLists = ['answer','logout']
+    t1.join()
+    t2.join()
+   
+   
+    
+    
         
-    consumer.start_Consumer(exchange='FSExchange1', 
-                            queue='FSCenterBus123', 
-                            callback=mq_loop,
-                            serverLists=serverLists)
+        
     
     

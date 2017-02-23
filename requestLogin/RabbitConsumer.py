@@ -1,6 +1,6 @@
  # -*- coding:utf-8 -*-     
 import pika    
-class RabbitMQ:
+class RabbitConsumer:
     def __init__(self, 
                  host = '192.168.44.223',
                  port = 5672,
@@ -17,7 +17,7 @@ class RabbitMQ:
         self.prfetch_count = 2
      
         #FS.test111_13
-    def connect_mq(self):
+    def connect(self):
         try:
             auth = pika.PlainCredentials(self.user, self.pwd)
             parameters = pika.ConnectionParameters(host=self.host, 
@@ -29,7 +29,7 @@ class RabbitMQ:
             self.channel = self.conn.channel() 
             print 'connect rabbitmq success...'
         except Exception,e:
-            raise "connect mq error %s" %e
+            raise "connect consumer error %s" %e
         
     def get_channel(self):
         return self.channel
@@ -54,7 +54,7 @@ class RabbitMQ:
         except Exception, e:
             print(e)     
             
-    def start_producer(self, msg, exchange, routing_key='FSReplay'):   
+    def publish(self, msg, exchange, routing_key='FSReplay'):   
         try:
             #json_str = json.dumps(msg)
             self.channel.exchange_declare(exchange=exchange,type='direct')

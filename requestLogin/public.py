@@ -1,13 +1,14 @@
-from RabbitMq import RabbitMQ
-from Redis import RedisDb
 import time
 import logging
+from Redis import RedisDb
+from RabbitPublisher import RabbitPublisher
+from RabbitConsumer import RabbitConsumer
 
-HOST = '192.168.44.223'
+HOST = '192.168.94.230'
 PORT_MQ = 5672
 PORT_REDIS = 6379
-USER_MQ = 'cc'
-PASSWD_MQ = '123'
+USER_MQ = 'admin'
+PASSWD_MQ = '000000'
 PASSWD_REDIS =''
 VHOST = 'test'
 
@@ -17,13 +18,13 @@ redis = RedisDb(host=HOST,
                 pwd=PASSWD_REDIS
                 )
 
-producer = RabbitMQ(host=HOST, 
+producer = RabbitPublisher(host=HOST, 
                     port=PORT_MQ, 
                     user=USER_MQ, 
                     pwd=PASSWD_MQ,
                     vhost=VHOST)
 
-consumer = RabbitMQ(host=HOST, 
+consumer = RabbitConsumer(host=HOST, 
                     port=PORT_MQ, 
                     user=USER_MQ, 
                     pwd=PASSWD_MQ,
@@ -32,13 +33,12 @@ consumer = RabbitMQ(host=HOST,
 
 def send_to_mq(msg):
     try:
-        #producer.connect_mq()
-        producer.start_producer(msg=msg, 
-                            exchange='FSExchange1', 
-                            routing_key='FSReplay')
+        #producer.pu()
+        producer.publish(msg=msg, 
+                        routing_key='FSReplay')
         
     except Exception,e:
-        raise "reconnet error:" ,e
+        print e
     #producer.channel.close()    
     logging.info("send %s" ,msg)
     print "send [%s]" %msg
