@@ -1,0 +1,18 @@
+
+NAME: PushCenter
+
+DEBUG: True
+
+
+AMQP__URL :    amqp://test:test@localhost:5672/%2f
+
+REDIS_URL :    localhost
+REDIS_PORT :    6379
+REDIS_DB   :    0
+
+IGT_HOST : http://sdk.open.api.igexin.com/apiex.htm
+ANDROID_APPKEY : 5Ppd2ltAfx7M4QbfkJ1vN9
+ANDROID_APPID : kILp1JiBjv7vmuVTSGOc38
+ANDROID_MASTERSECRET : zDnVTa1INk50HlV6Wy62p9
+CID : 3bbf411607d756ccb24d3bfd4215338e
+ALIAS   :   ""

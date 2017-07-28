@@ -11,13 +11,7 @@ LOGGER = logging.getLogger(__name__)
 class RabbitPublisher(object):
     _CONN_FLAG = True
     _RECONNECT_TIME = 0
-    def __init__(self, amqp_url):
-        self._connection = None
-        self._channel = None
-        self._closing = False
-        self._consumer_tag = None
-        self._url = amqp_url
-        
+    
     def __init__(self,
                  host = '192.168.44.223',
                  port = 5672,

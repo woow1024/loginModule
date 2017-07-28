@@ -1,5 +1,0 @@
-repo: 128e577c9e05d99bb860650c467600e2277995a0
-node: 458c4557f51c5695f5c92eae079acf0a5f1324b9
-branch: default
-latesttag: rabbitmq_v3_4_4
-latesttagdistance: 3

@@ -9,10 +9,12 @@ ADD_DEFINITIONS(-DDEBUG_MODE -g)
 SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -Wl,-rpath=../lib") 
 SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -Wl,-rpath=../lib") 
 
+SET(CMAKE_SOURCE_DIR .)
+
 PROJECT(QCenter)
 #head file path
 INCLUDE_DIRECTORIES( 
-/opt/amqpcpp-master/include/
+${CMAKE_SOURCE_DIR}/amqpcpp-master/include/
 include/
 public/
 ./src/http/include/
@@ -22,16 +24,16 @@ public/
 ./src/toolkit/
 /usr/include/
 /usr/local/include/
-/opt/rabbitmq-c-0.8.0/librabbitmq
-/opt/rabbitmq-c-0.8.0/librabbitmq/unix
-/usr/local/ssl/include
+./rabbitmq-c-0.8.0/librabbitmq
+./rabbitmq-c-0.8.0/librabbitmq/unix
+#/usr/local/ssl/include
 ) 
  
 LINK_DIRECTORIES(
 ${CMAKE_CURRENT_BINARY_DIR}/run/lib/
 /usr/local/lib/
-/opt/amqpcpp-master/
-/usr/local/ssl/lib/
+./amqpcpp-master/
+#/usr/local/ssl/lib/
 /opt/rabbitmq-c-0.8.0/librabbitmq/
 #/home/meirui.yan/rabbitmqcpp/src
 )
@@ -57,7 +59,7 @@ ADD_DEFINITIONS(-DTOOLKIT_USE_STL)
 ADD_LIBRARY(toolkit ${TOOLKIT_LIB_SRCS})  
 
 
-AUX_SOURCE_DIRECTORY(./src/QFront/QFrontServer QFRONT_SRCS)
-ADD_EXECUTABLE(QFrontServer ${QFRONT_SRCS}) 
-TARGET_LINK_LIBRARIES(QFrontServer toolkit tinyxml libjson.a pthread)
-TARGET_LINK_LIBRARIES(QFrontServer libssl.a  libamqpcpp.a librabbitmq.a  util dl rt)  
+AUX_SOURCE_DIRECTORY(./src/PushCenter QFRONT_SRCS)
+ADD_EXECUTABLE(PushCenter ${QFRONT_SRCS}) 
+TARGET_LINK_LIBRARIES(PushCenter toolkit tinyxml libjson.a pthread)
+TARGET_LINK_LIBRARIES(PushCenter libssl.a  libamqpcpp.a librabbitmq.a  util dl rt)  

@@ -4,15 +4,15 @@ from Redis import RedisDb
 from RabbitPublisher import RabbitPublisher
 from RabbitConsumer import RabbitConsumer
 
-HOST = '192.168.94.230'
+HOST = '192.168.44.223'
 PORT_MQ = 5672
 PORT_REDIS = 6379
-USER_MQ = 'admin'
-PASSWD_MQ = '000000'
+USER_MQ = 'cc'
+PASSWD_MQ = '123'
 PASSWD_REDIS =''
 VHOST = 'test'
 
-att_dict={'func','from'}
+att_dict=['func','from']
 redis = RedisDb(host=HOST, 
                 port=PORT_REDIS, 
                 pwd=PASSWD_REDIS

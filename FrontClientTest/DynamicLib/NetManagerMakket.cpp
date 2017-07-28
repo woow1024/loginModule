@@ -52,7 +52,8 @@ UINT CNetManagerMakket::HandleSocketSendThread()
 #else
 			CManagerMarket::GetInstance()->FormatLog(0,"Send->socket:%d,body:%s\n",m_cSSLSocket.GetSocket(),pszSendBuffer+52);
 #endif
-			CManagerMarket::GetInstance()->PostTSMessage(htonl(pOnePacket->tPackeHead.dwCmd),(WPARAM)(TRUE),(LPARAM)(pszSendBuffer+52),FALSE);
+			
+			CManagerMarket::GetInstance()->PostTSMessage(htonl(pOnePacket->tPackeHead.dwCmd),0,(LPARAM)(LPCTSTR)(pszSendBuffer+52),FALSE);
 		}
 		G_FREE_ARRAY_MEM(pszSendBuffer);
 #endif

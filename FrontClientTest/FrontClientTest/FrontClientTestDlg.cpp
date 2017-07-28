@@ -181,6 +181,7 @@ void CFrontClientTestDlg::OnBnClickedButtonLogin()
 	string sPort(csPort.GetBuffer());
 	CManagerMarket::GetInstance()->SetNotifyWnd(this->GetSafeHwnd());
 	CManagerMarket::GetInstance()->Start();
+	Sleep(200);
 	if(CManagerMarket::GetInstance()->ConnetToTS(sIp.c_str(),atoi(sPort.c_str())))
 	{
 		m_csBody += _T("服务器连接成功!\r\n"); 
@@ -220,7 +221,48 @@ void CFrontClientTestDlg::OnBnClickedButtonLogin2()
 	csName.ReleaseBuffer();
 	csPwd.ReleaseBuffer();
 }
-
+#define CHINESE_CODE_PAGE 936
+wstring MultCHarToWideChar(const string& str)
+{
+    //获取缓冲区的大小，并申请空间，缓冲区大小是按字符计算的
+	if(str.size() <= 0)
+	{
+		wstring strTemp;
+		return strTemp;
+	}
+	/*	USES_CONVERSION; 
+	
+	  LPWSTR pUnicodeStr = A2W(str.c_str());
+	  int nErr = :: GetLastError();
+	  return pUnicodeStr;
+	*/
+	const char * pSzStr = str.c_str();
+	/*
+	int nLen = MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED , pSzStr, -1, NULL, 0);
+	LPWSTR  pUnicode = (LPWSTR)LocalAlloc(LPTR , nLen); 
+	MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, pSzStr, -1,   
+	pUnicode, nLen);   
+	wstring return_value;
+    return_value.append(pUnicode);
+	//    LocalFree(pUnicode);   
+    return return_value;
+	*/
+	
+	
+	int nLen = MultiByteToWideChar(CHINESE_CODE_PAGE,  0, pSzStr, -1, NULL, 0);
+    WCHAR *pBuffer = new WCHAR[nLen];
+	memset(pBuffer, 0, sizeof(WCHAR) * nLen);
+    //多字节编码转换成宽字节编码
+    MultiByteToWideChar(CHINESE_CODE_PAGE,  0, pSzStr, -1, pBuffer, nLen);
+	//  pBuffer[nLen]='\0';//添加字符串结尾
+    //删除缓冲区并返回值
+	int nErr0 = ::GetLastError();
+    wstring return_value;
+    return_value.append(pBuffer);
+    delete []pBuffer;
+    return return_value;	
+	
+}
 LRESULT CFrontClientTestDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int wpara = wParam;
@@ -229,14 +271,21 @@ LRESULT CFrontClientTestDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lPar
 	case GWTS_CMD_LOGIN:
 		{ 
 			UpdateData(TRUE);
-			CString csTr = (char*)lParam;
+			//CString csTr = (char*)lParam;
+			//const wchar_t* tt = MultCHarToWideChar((char*)lParam).c_str();
+			//CString csTr = tt;
+			CString csTr = (char*)lParam ;
+			
 			if (wParam == 1)
 			{
 				m_csBody += _T("发送信息：")+csTr+_T("\r\n");
+				m_csBody += _T("发送成功");
+				//m_csBody = csTr.Format("%s\n",tt);
 			}
 			else
 			{
 				m_csBody += _T("接收信息：")+csTr+_T("\r\n");
+				m_csBody += _T("接收成功");
 			}
 			UpdateData(FALSE);
 			break;

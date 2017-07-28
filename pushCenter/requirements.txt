@@ -1,0 +1,5 @@
+amqp
+anyjson
+celery
+PyYAML
+

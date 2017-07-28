@@ -69,8 +69,6 @@ class RabbitConsumer:
             print e
             #self.channel.close()
             
-            print("%s %s",__file__,e)   
-            
     def confirm(self, ch, method):
             ch.basic_ack(delivery_tag=method.delivery_tag)
         

@@ -56,6 +56,7 @@ def read_conf(path):
 
 
 def func_producer():
+    global aa
     producer.set_args('FSExchange1', 
                           'direct', 
                           'FSReplay', 
@@ -64,7 +65,7 @@ def func_producer():
     try:  
         producer.run()
     except Exception, e:
-        print e
+        raise e
 
 def func_consumer():
     serverLists = ['answer','logout'] 
@@ -77,7 +78,7 @@ def func_consumer():
                                     serverLists=serverLists)            
         except Exception,e:
             logging.error("mq connect error %s" %e)
-            print('lose connection, reopen in 3 seconds...')
+            logging.info('lose connection, reopen in 3 seconds...')
             time.sleep(5) 
             continue
         else:
