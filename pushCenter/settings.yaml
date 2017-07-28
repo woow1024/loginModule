@@ -5,6 +5,7 @@ DEBUG: True
 
 
 AMQP__URL :    amqp://test:test@localhost:5672/%2f
+AMQP_QUEUE :    hello
 
 REDIS_URL :    localhost
 REDIS_PORT :    6379

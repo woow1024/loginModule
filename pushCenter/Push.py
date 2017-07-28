@@ -27,14 +27,7 @@ def make_celery(broker):
 
 pushObject = PushToAndroid()
 def handle_mq(body):
-   
-    pushObject.worker(clientId = config['CID'],title=content['title'],text=body)  
-    
-    #pushObject.pushMessageToList(clientId = config['CID'],title=u'推送',text=body,host=config['IGT_HOST'])
-    #print "message body" + body;
-
-Alias = ''
-
+    pushObject.worker(clientId = config['CID'],title=content['title'],text=content['text'])  
 
 
 
@@ -46,11 +39,8 @@ if __name__ == "__main__":
     redisHandler = redis.connect()
     redis.get_redis_conn()
     aa =redisHandler.get('name')
-    print aa
 
-    
-    
-    consumer = RabbitMqConsumer(config['AMQP__URL'], queue='hello')
+    consumer = RabbitMqConsumer(config['AMQP__URL'], queue=config['AMQP_QUEUE'])
     try:
         consumer.run(handle_mq)
     except KeyboardInterrupt:
