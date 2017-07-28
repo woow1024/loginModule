@@ -10,15 +10,12 @@ import gevent.monkey
 gevent.monkey.patch_all()
 
 __all__ = [ 'pushMessageToList', 'NotificationTemplateDemo']
+push = IGeTui(config['IGT_HOST'], config['ANDROID_APPKEY'], config['ANDROID_MASTERSECRET'] )
+
 
 class PushToAndroid(object):
-    def __init__(self,
-                 host = config['IGT_HOST'],
-                 appkey = config['ANDROID_APPKEY'],
-                 mastersecret = config['ANDROID_MASTERSECRET']):
-        self.host = config['IGT_HOST']
-        self.appkey = appkey
-        self.mastersecret = mastersecret
+    def __init__(self):
+        pass
         
     # 通知透传模板动作内容
     def NotificationTemplateDemo(self,title,text):
@@ -29,8 +26,8 @@ class PushToAndroid(object):
         template.transmissionContent = config["CID"]
         template.title = title
         template.text = text
-        template.logo = "icon.png"
-        template.logoURL = "./"
+        template.logo = ""
+        template.logoURL = "https://qh.yk5800.com/ddab6a60-25ac-11e7-a7bd-00163e0015d1.png"
         template.isRing = True
         template.isVibrate = True
         template.isClearable = True
@@ -41,8 +38,6 @@ class PushToAndroid(object):
     
     def pushMessageToList(self,clientId,title, text):
         
-        push = IGeTui(self.host, self.appkey,self.mastersecret )
-
         template = self.NotificationTemplateDemo(title,text)
         message = IGtListMessage()
         message.data = template
@@ -57,7 +52,7 @@ class PushToAndroid(object):
         arr = []
     
         arr.append(target1)
-        contentId = push.getContentId(message, u'ToList_测试')
+        contentId = push.getContentId(message, u'List_alarm')
         ret = push.pushMessageToList(contentId, arr)
         print ret
         

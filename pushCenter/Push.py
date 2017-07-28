@@ -7,8 +7,12 @@ import logging
 import pika  
 from plugins.Redis import RedisDb
 from plugins.push_to_app import PushToAndroid
+import gevent
+import gevent.monkey
+import json
+gevent.monkey.patch_all()
 
-
+content = {'title':u'早上好', 'text':u'天气不错'}
 LOG_FORMAT = ('%(levelname) -10s %(asctime)s %(name) -30s %(funcName) '
               '-35s %(lineno) -5d: %(message)s')
 LOGGER = logging.getLogger(__name__)
@@ -21,11 +25,13 @@ def make_celery(broker):
         print "celery" + e.message;
 
 
-
+pushObject = PushToAndroid()
 def handle_mq(body):
-    pushObject = PushToAndroid()
-    pushObject.worker(clientId = config['CID'],title=u'推送',text=body)    
-    print "message body" + body;
+   
+    pushObject.worker(clientId = config['CID'],title=content['title'],text=body)  
+    
+    #pushObject.pushMessageToList(clientId = config['CID'],title=u'推送',text=body,host=config['IGT_HOST'])
+    #print "message body" + body;
 
 Alias = ''
 
