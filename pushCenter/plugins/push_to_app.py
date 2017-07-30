@@ -58,4 +58,5 @@ class PushToAndroid(object):
         
         
     def worker(self,clientId,title,text):
-        gevent.spawn(self.pushMessageToList,clientId,title,text)
+		self.pushMessageToList(clientId,title,text)
+        #gevent.spawn(self.pushMessageToList,clientId,title,text)
