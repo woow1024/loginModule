@@ -29,7 +29,7 @@ class RabbitMqConsumer(object):
     def on_connection_open(self, unused_connection):
         self.logger.info('Connection opened')
         self.add_on_connection_close_callback()
-        self.open_channel()
+        self.channel = self.open_channel()
 
     def add_on_connection_close_callback(self):
         self.logger.info('Adding connection close callback')
@@ -64,8 +64,12 @@ class RabbitMqConsumer(object):
     def on_channel_open(self, channel):
         #self.logger.info('Channel opened')
         self._channel = channel
+        #channel.queue_declare(self.on_queue_declareok, self.queue)
         self.add_on_channel_close_callback()
         self.on_bindok(None)
+        
+    def on_queue_declareok(self, method_frame):
+        pass
 
     def add_on_channel_close_callback(self):
         self.logger.info('Adding channel close callback')

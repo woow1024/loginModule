@@ -4,15 +4,14 @@ from igetui.template.igt_notification_template import *
 from igetui.igt_target import *
 from igt_push import *
 from igetui.template import *
-from config import config
-import gevent
-import gevent.monkey
-gevent.monkey.patch_all()
+from  config import config
+import Redis 
+
 
 __all__ = [ 'pushMessageToList', 'NotificationTemplateDemo']
-push = IGeTui(config['IGT_HOST'], config['ANDROID_APPKEY'], config['ANDROID_MASTERSECRET'] )
 
 
+pushA = IGeTui(config['IGT_HOST'], config['ANDROID_APPKEY'], config['ANDROID_MASTERSECRET'] )
 class PushToAndroid(object):
     def __init__(self):
         pass
@@ -37,26 +36,27 @@ class PushToAndroid(object):
         return template                
     
     def pushMessageToList(self,clientId,title, text):
-        
-        template = self.NotificationTemplateDemo(title,text)
-        message = IGtListMessage()
-        message.data = template
-        message.isOffline = True
-        message.offlineExpireTime = 1000 * 3600 * 12
-        message.pushNetWorkType = 0
+	
+	template = self.NotificationTemplateDemo(title,text)
+	message = IGtListMessage()
+	message.data = template
+	message.isOffline = True
+	message.offlineExpireTime = 1000 * 3600 * 12
+	message.pushNetWorkType = 0
     
-        target1 = Target()
-        target1.appId = config['ANDROID_APPID']
-        target1.clientId = clientId
-        target1.alias = config['ALIAS']
-        arr = []
+	target1 = Target()
+	target1.appId = config['ANDROID_APPID']
+	target1.clientId = clientId
+	target1.alias = config['ALIAS']
+	arr = []
     
-        arr.append(target1)
-        contentId = push.getContentId(message, u'List_alarm')
-        ret = push.pushMessageToList(contentId, arr)
-        print ret
+	arr.append(target1)
+	contentId = pushA.getContentId(message, u'List_alarm')
+	ret = pushA.pushMessageToList(contentId, arr)
+	print ret
         
-        
+
+	
     def worker(self,clientId,title,text):
-		self.pushMessageToList(clientId,title,text)
+	self.pushMessageToList(clientId,title,text)
         #gevent.spawn(self.pushMessageToList,clientId,title,text)
