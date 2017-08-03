@@ -18,7 +18,7 @@ class RedisDb(object):
         self.pwd = pwd
         self.db = db
         self._conn = None
-        self.logger = logging.getLogger(self.__module__)
+        self.logger = logging.getLogger("Push.Redis")
         
     def connect(self):
         try:
@@ -28,6 +28,7 @@ class RedisDb(object):
                                          db = self.db, 
                                          password =self.pwd)
             self._conn = redis.Redis(connection_pool=self.pool)
+            self.logger.info('connect redis %s',self.host)
             return self._conn
         except Exception, e:
             self.logger.info('Connecting to redis error %s', str(e))
@@ -47,16 +48,19 @@ class RedisDb(object):
             self.logger.warn('redis disconnected')
             return False
         
-    def user_exists(self,keyname):
+    def user_exists(self,keyname,value):
         conn = self.get_redis_conn()
         try:
-            len = conn.hlen(keyname)
-            if len == 0:
-                return 'not exists'
+            res = conn.hexists(keyname,value)
+            if res == False:
+                self.logger.warn('user %s does not exist',keyname)
             else:
-                return 'exists'
+                return value
         except Exception,error:
-            logging.error("check user_exists failed : %s", str(error))
-            return False           
+            self.logging.error("check user_exists failed : %s", str(error))
+            return False   
+        
+    def get_value(self,key,field):
+        return self._conn.hget(key, field)
     
 

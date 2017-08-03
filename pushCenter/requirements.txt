@@ -1,5 +1,7 @@
-amqp
-json
-celery
-PyYAML
-pika
+celery==4.0.2
+jsonpickle==0.9.5
+redis==2.10.5
+apns_client==0.2.1
+pyOpenSSL==17.2.0
+pika==0.11.0b1
+PyYAML==3.12

@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
-
 import pika
 
 
 class RabbitMqConsumer(object):
 
-
-    
     def __init__(self, amqp_url, queue):
         self._connection = None
         self._channel = None
@@ -16,7 +13,7 @@ class RabbitMqConsumer(object):
         self._consumer_tag = None
         self._url = amqp_url
         self.queue = queue
-        self.logger = logging.getLogger(self.__module__)
+        self.logger = logging.getLogger("Push.Rabbitmq_cosumer")
 
     def connect(self):
         self.logger.info('Connecting to %s', self._url)
@@ -44,32 +41,26 @@ class RabbitMqConsumer(object):
             self._connection.add_timeout(10, self.reconnect)
 
     def reconnect(self):
-        # This is the old connection IOLoop instance, stop its ioloop
-        
-        #self._connection.ioloop.stop()
         if self._closing:
             self._connection.ioloop.stop()  
                    
         if not self._closing:
             # Create a new connection
             self._connection = self.connect()
-
-            # There is now a new connection, needs a new ioloop to run
             self._connection.ioloop.start()
 
     def open_channel(self):
-        #self.logger.info('Creating a new channel')
         self._connection.channel(on_open_callback=self.on_channel_open)
 
     def on_channel_open(self, channel):
-        #self.logger.info('Channel opened')
         self._channel = channel
         #channel.queue_declare(self.on_queue_declareok, self.queue)
         self.add_on_channel_close_callback()
         self.on_bindok(None)
         
     def on_queue_declareok(self, method_frame):
-        pass
+        self.logger.info("queue created")
+    
 
     def add_on_channel_close_callback(self):
         self.logger.info('Adding channel close callback')

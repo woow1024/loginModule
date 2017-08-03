@@ -1,20 +1,31 @@
-
-NAME: PushCenter
+# -*- coding:utf-8 -*-
+NAME: Push
 
 DEBUG: True
 
+#celery  rabbitmq  redis
+CELERY_BROKER_URL   :   redis://localhost:6379/7
+AMQP__URL:    amqp://test:test@localhost:5672/%2f
+AMQP_QUEUE:    hello
 
-CELERY_BROKER_URL   :   redis:/localhost:6379/1
-AMQP__URL :    amqp://test:test@localhost:5672/%2f
-AMQP_QUEUE :    hello
+REDIS_URL:    localhost
+REDIS_PORT:    6379
+REDIS_DB:    0
 
-REDIS_URL :    localhost
-REDIS_PORT :    6379
-REDIS_DB   :    0
+#getui
+IGT_HOST:  http://sdk.open.api.igexin.com/apiex.htm
+ANDROID_APPKEY: 5Ppd2ltAfx7M4QbfkJ1vN9
+ANDROID_APPID: kILp1JiBjv7vmuVTSGOc38
+ANDROID_MASTERSECRET: zDnVTa1INk50HlV6Wy62p9
+CID: 3bbf411607d756ccb24d3bfd4215338e
+LOGOURL:    https://qh.yk5800.com/ddab6a60-25ac-11e7-a7bd-00163e0015d1.png
+ALIAS:   ""
 
-IGT_HOST :  http://sdk.open.api.igexin.com/apiex.htm
-ANDROID_APPKEY : 5Ppd2ltAfx7M4QbfkJ1vN9
-ANDROID_APPID : kILp1JiBjv7vmuVTSGOc38
-ANDROID_MASTERSECRET : zDnVTa1INk50HlV6Wy62p9
-CID : 3bbf411607d756ccb24d3bfd4215338e
-ALIAS   :   ""
+#apns
+PUSH_DEBUG:  push_sandbox
+PUSH_RELEASE:  push_production
+FEEDBACK_DEBUG: feedback_sandbox
+FEEDBACK_RELEASE: feedback_production
+DEVICE_TOKEN:       ef38e0d5 f28ad2b2 0a4fb7ca 523d7282 20017929 19b8210f e7f9360d e78735d1
+P12_FILENAME:       F:/login/loginModule/pushCenter/Developer_aps.p12
+PWD: '111111'
