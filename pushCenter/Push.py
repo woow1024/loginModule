@@ -34,21 +34,20 @@ def get_user_info(data):
 		platform = redis.get_value(user,'plat')
 		return user,device, platform,json_data['text']
 	
-pushGeTui = PushToAndroid()	
+pushGeTui = PushToAndroid()
 pushApns = pushAPNs(environment=config['PUSH_DEBUG'])
 def handle_mq(body):
 	user,device, platform,text = get_user_info(body)
 	if platform == "android":
-		pushGeTui.worker(device,text)
-		#asynfunc.delay(device, text)
+		#pushGeTui.worker(device,text)
+		asynfunc.delay(device, text)
 	elif platform == "ios":
-		pushApns.push(device,text)
-		#asynApple.applicationly_async(device, text)
+		asynApple.delay(device, text)
 	
 	
 
 if __name__ == "__main__":
-	
+	i
 	consumer = RabbitMqConsumer(config['AMQP__URL'], queue=config['AMQP_QUEUE'])
 	try:
 		consumer.run(handle_mq)
